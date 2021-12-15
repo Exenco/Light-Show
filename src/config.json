@@ -1,0 +1,89 @@
+{
+  "Stage": {
+    "Information": "§7The current song is §9%title%§7 by §9%artist%§7 form the album §9%album%§7 released in §9%year%§7.",
+    "NoCurrentSong": "§7There is no song being played.",
+    "TermsOfService": "§cWarning: §7By entering this area you acknowledge that there will be strobe light effects.",
+    "Location": {
+      "world": "Stadium-Stage",
+      "x": 0.5,
+      "y": 70,
+      "z": 0.0
+    },
+    "Radius": 200.0
+  },
+  "ArtNet": {
+    "Ip": "192.168.178.50",
+    "Port": 6454,
+    "Starting": "§7Starting Art-Net...",
+    "AlreadyStarted": "§cArt-Net has already been started!",
+    "Stopping": "§7Stopping Art-Net...",
+    "AlreadyStopped": "§cArt-Net is not running!"
+  },
+  "DmxUniverses": [
+    {
+      "Id": 1,
+      "Filename": "Universe1"
+    },
+    {
+      "Id": 2,
+      "Filename": "Fireworks"
+    },
+    {
+      "Id": 3,
+      "Filename": "Beacon"
+    },
+    {
+      "Id": 4,
+      "Filename": "MovingHeadsOne"
+    },
+    {
+      "Id": 5,
+      "Filename": "FogMachines"
+    }
+  ],
+  "Songs": [
+    {
+      "Id": 1,
+      "Filename": "Alan Walker x Alex Skrindo - Sky VIP (Remix)"
+    },
+    {
+      "Id": 2,
+      "Filename": "Alan Walker - The Spectre (Intro Edit)"
+    }
+  ],
+  "Logos": [
+    {
+      "Id": 1,
+      "Filename": "Walker"
+    }
+  ],
+  "Fireworks": [
+    {
+      "Id": 1,
+      "Filename": "Star-Cyan-Orange-Flicker"
+    },
+    {
+      "Id": 2,
+      "Filename": "Creeper-Green"
+    }
+  ],
+  "EffectSettings": {
+    "SongSelector": {
+      "MaxValue": 100
+    },
+    "Beacon": {
+      "DisabledBlock": "BLACK_WOOL"
+    },
+    "MovingLight": {
+      "OffTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA5MDczYmE0NDBiZDdhMGJkNjdhNDM2NmIyMDM1NzdmYWVkMDZhOWM1ZGY2MGY2YmJlZDc3Mzg2NDM5NzUifX19",
+      "LowTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmJiMWEyNDdmZmJmMTdhOWFjODQzNzFmNDI4MWZlYjA1YmZmYmI1YTczYTI5MGNhNjA5YjM0MzhiOGNiZGIzIn19fQ==",
+      "MediumTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjExZDBiMzkyOWZiM2RiNWUzNWI2ZTNmNTdhY2ZkYTcxYjE4ZjE0NmQ5NTJiZWY2MzVlODNlZmU3YWFmZWY3YyJ9fX0=",
+      "HighTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI5YmFlZWVkN2RmMzgzMjBkMTU5NTc2YzZkZTBjMGQxMTVmZTE2YWEwMDlmMjg5ZTY1ZTdhZTgyMzFlNzhmNyJ9fX0="
+    }
+  },
+  "Commands": {
+    "NoPermission": "§cYou have no permission to execute this command.",
+    "NotAllowed": "§cYou are not allowed to execute this command.",
+    "Reload": "§aReloading successful."
+  }
+}
