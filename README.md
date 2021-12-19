@@ -3,7 +3,7 @@ Spigot Plugin for creating light shows/concerts in Minecraft. It works by simula
 
 ## Demo
 Here you can see a snippet of a light-show I made:
-[![Light-Show-Demo](https://raw.githubusercontent.com/Exenco/Light-Show/1.18/Demo.gif)](https://www.reddit.com/r/admincraft/comments/rgiwvv/ive_created_a_plugin_which_allows_you_to_make/)
+[![Light-Show-Demo](https://raw.githubusercontent.com/Exenco/Light-Show/1.18/Demo.gif)](https://www.reddit.com/r/admincraft/comments/rgiwvv/ive_created_a_plugin_which_allows_you_to_make/) \
 Click on the Demo to view the full video on Reddit.
 
 ## How it works
