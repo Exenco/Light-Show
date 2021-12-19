@@ -5,6 +5,7 @@ import net.exenco.lightshow.executor.commands.*;
 import net.exenco.lightshow.show.song.ShowSong;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.StageManager;
+import net.exenco.lightshow.util.ProximitySensor;
 import net.exenco.lightshow.util.ShowSettings;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,14 +23,15 @@ public class ShowExecutor implements CommandExecutor, TabCompleter {
     private final ShowSettings showSettings;
     private final SongManager songManager;
 
-    public ShowExecutor(LightShow lightShow, ShowSettings showSettings, StageManager stageManager, SongManager songManager) {
+    public ShowExecutor(LightShow lightShow, ShowSettings showSettings, StageManager stageManager, SongManager songManager, ProximitySensor proximitySensor) {
         this.showSettings = showSettings;
         this.songManager = songManager;
 
         commandList.add(new ReloadCommand(lightShow, showSettings));
         commandList.add(new StartCommand(showSettings, stageManager));
         commandList.add(new StopCommand(showSettings, stageManager));
-        commandList.add(new TosCommand(showSettings));
+        commandList.add(new WarningCommand(showSettings));
+        commandList.add(new ToggleCommand(showSettings, proximitySensor));
     }
 
     @Override

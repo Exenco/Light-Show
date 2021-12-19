@@ -1,0 +1,362 @@
+[
+  {
+    "DmxId": 1,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -39.0,
+	  "y": 55.0,
+	  "z": -65.0
+	}
+  },
+  {
+    "DmxId": 5,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -37.0,
+	  "y": 56.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 9,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -35.0,
+	  "y": 56.0,
+	  "z": -69.0
+	}
+  },
+  {
+    "DmxId": 13,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -33.0,
+	  "y": 57.0,
+	  "z": -71.0
+	}
+  },
+  {
+    "DmxId": 17,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -31.0,
+	  "y": 57.0,
+	  "z": -72.0
+	}
+  },
+  {
+    "DmxId": 21,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -29.0,
+	  "y": 58.0,
+	  "z": -73.0
+	}
+  },
+  {
+    "DmxId": 25,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -27.0,
+	  "y": 58.0,
+	  "z": -74.0
+	}
+  },
+  {
+    "DmxId": 29,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -25.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 33,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -23.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 37,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -21.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 41,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -19.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 45,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -17.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 49,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -15.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 53,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -13.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 57,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -11.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 61,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -9.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 65,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -7.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 69,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -5.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 73,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -3.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 77,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": -1.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 81,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 1.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 85,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 3.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 89,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 5.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 93,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 7.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 97,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 9.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 101,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 11.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 105,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 13.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 109,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 15.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 113,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 17.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 117,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 19.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 121,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 21.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 125,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 23.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 129,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 25.0,
+	  "y": 59.0,
+	  "z": -75.0
+	}
+  },
+  {
+    "DmxId": 133,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 27.0,
+	  "y": 58.0,
+	  "z": -74.0
+	}
+  },
+  {
+    "DmxId": 137,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 29.0,
+	  "y": 58.0,
+	  "z": -73.0
+	}
+  },
+  {
+    "DmxId": 141,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 31.0,
+	  "y": 57.0,
+	  "z": -72.0
+	}
+  },
+  {
+    "DmxId": 145,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 33.0,
+	  "y": 57.0,
+	  "z": -71.0
+	}
+  },
+  {
+    "DmxId": 149,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 35.0,
+	  "y": 56.0,
+	  "z": -69.0
+	}
+  },
+  {
+    "DmxId": 153,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 37.0,
+	  "y": 56.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 157,
+    "DmxType": "Beacon",
+	"Location": {
+	  "x": 39.0,
+	  "y": 55.0,
+	  "z": -65.0
+	}
+  }
+]

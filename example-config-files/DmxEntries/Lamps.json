@@ -1,0 +1,902 @@
+[
+  {
+    "DmxId": 1,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -52.0,
+	  "y": 50.0,
+	  "z": -49.0
+	}
+  },
+  {
+    "DmxId": 2,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -51.0,
+	  "y": 56.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 3,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -50.0,
+	  "y": 50.0,
+	  "z": -48.0
+	}
+  },
+  {
+    "DmxId": 4,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -47.0,
+	  "y": 55.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 5,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -47.0,
+	  "y": 50.0,
+	  "z": -48.0
+	}
+  },
+  {
+    "DmxId": 6,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -46.0,
+	  "y": 55.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 7,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -45.0,
+	  "y": 50.0,
+	  "z": -49.0
+	}
+  },
+  {
+    "DmxId": 8,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -44.0,
+	  "y": 55.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 9,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -43.0,
+	  "y": 55.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 10,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -39.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 11,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -38.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 12,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -37.0,
+	  "y": 49.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 13,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -36.0,
+	  "y": 49.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 14,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -35.0,
+	  "y": 49.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 15,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -34.0,
+	  "y": 49.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 16,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -33.0,
+	  "y": 49.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 17,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -32.0,
+	  "y": 49.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 18,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -31.0,
+	  "y": 49.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 19,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -30.0,
+	  "y": 49.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 20,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -29.0,
+	  "y": 49.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 21,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -28.0,
+	  "y": 49.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 22,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 67.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 23,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 65.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 24,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 63.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 25,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 61.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 26,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 59.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 27,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -25.0,
+	  "y": 57.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 28,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -24.0,
+	  "y": 56.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 28,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -24.0,
+	  "y": 55.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 29,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -17.0,
+	  "y": 56.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 29,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -17.0,
+	  "y": 55.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 30,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 72.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 31,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 70.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 32,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 68.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 33,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 66.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 34,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 64.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 35,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 62.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 36,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 60.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 37,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 58.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 38,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -13.0,
+	  "y": 56.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 39,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -10.0,
+	  "y": 63.0,
+	  "z": -65.0
+	}
+  },
+  {
+    "DmxId": 39,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -10.0,
+	  "y": 62.0,
+	  "z": -65.0
+	}
+  },
+  {
+    "DmxId": 40,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -9.0,
+	  "y": 55.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 40,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -9.0,
+	  "y": 54.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 41,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -7.0,
+	  "y": 56.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 41,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -7.0,
+	  "y": 55.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 42,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -5.0,
+	  "y": 58.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 42,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -5.0,
+	  "y": 57.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 43,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -3.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 44,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": -1.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 45,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 1.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 46,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 3.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 47,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 5.0,
+	  "y": 58.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 47,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 5.0,
+	  "y": 57.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 48,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 7.0,
+	  "y": 56.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 48,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 7.0,
+	  "y": 55.0,
+	  "z": -60.0
+	}
+  },
+  {
+    "DmxId": 49,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 9.0,
+	  "y": 55.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 49,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 9.0,
+	  "y": 54.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 50,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 10.0,
+	  "y": 63.0,
+	  "z": -65.0
+	}
+  },
+  {
+    "DmxId": 50,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 10.0,
+	  "y": 62.0,
+	  "z": -65.0
+	}
+  },
+  {
+    "DmxId": 51,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 72.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 52,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 70.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 53,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 68.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 54,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 66.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 55,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 64.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 56,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 62.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 57,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 60.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 58,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 58.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 59,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 13.0,
+	  "y": 56.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 60,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 17.0,
+	  "y": 56.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 60,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 17.0,
+	  "y": 55.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 61,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 24.0,
+	  "y": 56.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 61,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 24.0,
+	  "y": 55.0,
+	  "z": -59.0
+	}
+  },
+  {
+    "DmxId": 62,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 67.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 63,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 65.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 64,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 63.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 65,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 61.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 66,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 59.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 67,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 25.0,
+	  "y": 57.0,
+	  "z": -67.0
+	}
+  },
+  {
+    "DmxId": 68,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 28.0,
+	  "y": 49.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 69,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 29.0,
+	  "y": 49.0,
+	  "z": -58.0
+	}
+  },
+  {
+    "DmxId": 70,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 30.0,
+	  "y": 49.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 71,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 31.0,
+	  "y": 49.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 72,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 32.0,
+	  "y": 49.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 73,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 33.0,
+	  "y": 49.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 74,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 34.0,
+	  "y": 49.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 75,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 35.0,
+	  "y": 49.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 76,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 36.0,
+	  "y": 49.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 77,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 37.0,
+	  "y": 49.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 78,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 38.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 79,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 39.0,
+	  "y": 49.0,
+	  "z": -53.0
+	}
+  },
+  {
+    "DmxId": 80,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 43.0,
+	  "y": 55.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 81,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 44.0,
+	  "y": 55.0,
+	  "z": -57.0
+	}
+  },
+  {
+    "DmxId": 82,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 45.0,
+	  "y": 50.0,
+	  "z": -49.0
+	}
+  },
+  {
+    "DmxId": 83,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 46.0,
+	  "y": 55.0,
+	  "z": -56.0
+	}
+  },
+  {
+    "DmxId": 84,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 47.0,
+	  "y": 50.0,
+	  "z": -48.0
+	}
+  },
+  {
+    "DmxId": 85,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 47.0,
+	  "y": 55.0,
+	  "z": -55.0
+	}
+  },
+  {
+    "DmxId": 86,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 50.0,
+	  "y": 50.0,
+	  "z": -48.0
+	}
+  },
+  {
+    "DmxId": 87,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 51.0,
+	  "y": 56.0,
+	  "z": -54.0
+	}
+  },
+  {
+    "DmxId": 88,
+    "DmxType": "BlockUpdater",
+	"Location": {
+	  "x": 52.0,
+	  "y": 50.0,
+	  "z": -49.0
+	}
+  }
+]

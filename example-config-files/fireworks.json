@@ -1,0 +1,6 @@
+[
+  {
+    "Id": 1,
+	"FireworkNbt": "{Fireworks:{Flight:2,Explosions:[{Type:1,Flicker:1,Trail:1,Colors:[I;2437522],FadeColors:[I;15435844]},{Type:4,Flicker:0,Trail:0,Colors:[I;2651799],FadeColors:[I;15435844]}]}}"
+  }
+]

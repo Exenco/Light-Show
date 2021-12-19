@@ -1,8 +1,9 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import net.exenco.lightshow.show.stage.StageManager;
 import net.exenco.lightshow.util.PacketHandler;
 import net.exenco.lightshow.util.ShowSettings;
 import net.exenco.lightshow.util.VectorUtils;
@@ -11,8 +12,8 @@ import net.minecraft.core.Vector3f;
 import net.minecraft.world.entity.EnumItemSlot;
 import net.minecraft.world.entity.decoration.EntityArmorStand;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.*;
@@ -21,7 +22,7 @@ import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.UUID;
 
-public class MovingHead extends ShowEffect {
+public class MovingHeadFixture extends ShowFixture {
 
     private int state;
     private float yaw;
@@ -37,9 +38,10 @@ public class MovingHead extends ShowEffect {
     private final String lowTexture;
     private final String mediumTexture;
     private final String highTexture;
-    public MovingHead(JsonObject jsonObject, ShowSettings showSettings, PacketHandler packetHandler) {
-        super(jsonObject);
-        this.packetHandler = packetHandler;
+    public MovingHeadFixture(JsonObject jsonObject, StageManager stageManager) {
+        super(jsonObject, stageManager);
+        this.packetHandler = stageManager.getPacketHandler();
+        ShowSettings showSettings = stageManager.getShowSettings();
         this.offTexture = showSettings.showEffects().movingLight().offTexture();
         this.lowTexture = showSettings.showEffects().movingLight().lowTexture();
         this.mediumTexture = showSettings.showEffects().movingLight().mediumTexture();
@@ -73,10 +75,10 @@ public class MovingHead extends ShowEffect {
 
     private void lookAt(float yaw, float pitch) {
         Vector3f vector = new Vector3f(pitch, yaw, 0);
-        this.headArmorStand.setHeadPose(vector);
+        this.headArmorStand.a(vector);
         packetHandler.updateEntity(this.headArmorStand);
 
-        this.lightArmorStand.setHeadPose(vector);
+        this.lightArmorStand.a(vector);
         packetHandler.updateEntity(this.lightArmorStand);
     }
 
@@ -86,17 +88,17 @@ public class MovingHead extends ShowEffect {
         double y = spotlightLocation.getY();
         double z = spotlightLocation.getZ();
         this.headArmorStand = new EntityArmorStand(packetHandler.getWorld(), x, y, z);
-        this.headArmorStand.setXRot(0.0F);
-        this.headArmorStand.setYRot(0.0F);
-        this.headArmorStand.setNoGravity(true);
-        this.headArmorStand.setInvisible(true);
-        this.headArmorStand.setSlot(EnumItemSlot.f, CraftItemStack.asNMSCopy(getSpotlightHead(headTexture)));
+        this.headArmorStand.p(0.0F);
+        this.headArmorStand.o(0.0F);
+        this.headArmorStand.e(true);
+        this.headArmorStand.j(true);
+        this.headArmorStand.a(EnumItemSlot.f, CraftItemStack.asNMSCopy(getSpotlightHead(headTexture)));
 
         this.packetHandler.spawnEntity(this.headArmorStand);
     }
 
     private void updateHeadArmorStand(String headTexture) {
-        this.headArmorStand.setSlot(EnumItemSlot.f, CraftItemStack.asNMSCopy(getSpotlightHead(headTexture)));
+        this.headArmorStand.a(EnumItemSlot.f, CraftItemStack.asNMSCopy(getSpotlightHead(headTexture)));
         this.packetHandler.updateEntityEquipment(this.headArmorStand);
     }
 
@@ -106,19 +108,19 @@ public class MovingHead extends ShowEffect {
         double y = lightLocation.getY();
         double z = lightLocation.getZ();
         this.lightArmorStand = new EntityArmorStand(packetHandler.getWorld(), x, y, z);
-        this.lightArmorStand.setXRot(0.0F);
-        this.lightArmorStand.setYRot(0.0F);
-        this.lightArmorStand.setNoGravity(true);
-        this.lightArmorStand.setSmall(true);
-        this.lightArmorStand.setInvisible(true);
-        this.lightArmorStand.setSlot(EnumItemSlot.f, CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
-        this.lightArmorStand.setHeadPose(new Vector3f(yaw, pitch, 0));
+        this.lightArmorStand.p(0.0F);
+        this.lightArmorStand.o(0.0F);
+        this.lightArmorStand.e(true);
+        this.lightArmorStand.a(true);
+        this.lightArmorStand.j(true);
+        this.lightArmorStand.a(EnumItemSlot.f, CraftItemStack.asNMSCopy(new ItemStack(Material.AIR)));
+        this.lightArmorStand.a(new Vector3f(yaw, pitch, 0));
 
         this.packetHandler.spawnEntity(this.lightArmorStand);
     }
 
     private void updateLightArmorStand(Material material) {
-        this.lightArmorStand.setSlot(EnumItemSlot.f, CraftItemStack.asNMSCopy(new ItemStack(material)));
+        this.lightArmorStand.a(EnumItemSlot.f, CraftItemStack.asNMSCopy(new ItemStack(material)));
         this.packetHandler.updateEntityEquipment(this.lightArmorStand);
     }
 

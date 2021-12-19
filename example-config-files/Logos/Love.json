@@ -1,0 +1,495 @@
+{
+  "Id": 4,
+  "ParticleLines": [
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": -4.75,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": -4.75,
+        "y": -1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": -4.75,
+        "y": -1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": -2.75,
+        "y": -1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 0.25,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 1.25,
+        "y": -1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 1.25,
+        "y": -1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 2.25,
+        "y": 1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 2.75,
+        "y": -1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 2.75,
+        "y": 1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 2.75,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 4.75,
+        "y": 1.5,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 2.75,
+        "y": 0,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 3.75,
+        "y": 0,
+        "z": 0.0
+      }
+    },
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Origin": {
+        "x": 2.75,
+        "y": -1.5,
+        "z": 0.0
+      },
+      "Destination": {
+        "x": 4.75,
+        "y": -1.5,
+        "z": 0.0
+      }
+    }
+  ],
+  "ParticleDots": [
+    {
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.25,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.24,
+        "y": 0.211601,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.20,
+        "y": 0.468375,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.15,
+        "y": 0.653835,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.05,
+        "y": 0.9,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.95,
+        "y": 1.07121,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.85,
+        "y": 1.2,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.75,
+        "y": 1.29904,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.65,
+        "y": 1.37477,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.55,
+        "y": 1.43091,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.45,
+        "y": 1.46969,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.35,
+        "y": 1.49248,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.25,
+        "y": 1.5,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.15,
+        "y": 1.49248,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.05,
+        "y": 1.46969,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.95,
+        "y": 1.43091,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.85,
+        "y": 1.37477,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.75,
+        "y": 1.29904,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.65,
+        "y": 1.2,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.55,
+        "y": 1.07121,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.45,
+        "y": 0.9,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.35,
+        "y": 0.653835,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.30,
+        "y": 0.468375,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.26,
+        "y": 0.211601,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.25,
+        "y": 0.0,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.26,
+        "y": -0.211601,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.30,
+        "y": -0.468375,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.35,
+        "y": -0.653835,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.45,
+        "y": -0.9,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.55,
+        "y": -1.07121,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.65,
+        "y": -1.2,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.75,
+        "y": -1.29904,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.85,
+        "y": -1.37477,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -0.95,
+        "y": -1.43091,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.05,
+        "y": -1.46969,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.15,
+        "y": -1.49248,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.25,
+        "y": -1.5,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.24,
+        "y": -0.211601,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.20,
+        "y": -0.468375,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.15,
+        "y": -0.653835,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -2.05,
+        "y": -0.9,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.95,
+        "y": -1.07121,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.85,
+        "y": -1.2,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.75,
+        "y": -1.29904,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.65,
+        "y": -1.37477,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.55,
+        "y": -1.43091,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.45,
+        "y": -1.46969,
+        "z": 0.0
+      }
+    },
+	{
+      "Particle":"FIREWORKS_SPARK",
+      "Location": {
+        "x": -1.35,
+        "y": -1.49248,
+        "z": 0.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "DmxId": 1,
+    "DmxType": "SongSelector"
+  },
+  {
+    "DmxId": 2,
+    "DmxType": "LogoDisplay",
+	"Location": {
+	  "x": 0.5,
+	  "y": 66.0,
+	  "z": -64.5
+	}
+  },
+  {
+    "DmxId": 5,
+    "DmxType": "LogoDisplay",
+	"Location": {
+	  "x": -32.9,
+	  "y": 55.5,
+	  "z": -55.9
+	},
+	"Yaw": 25
+  },
+  {
+    "DmxId": 8,
+    "DmxType": "LogoDisplay",
+	"Location": {
+	  "x": 33.9,
+	  "y": 55.5,
+	  "z": -55.9
+	},
+	"Yaw": -25
+  },
+  {
+    "DmxId": 11,
+    "DmxType": "ParticleFlare",
+	"Location": {
+	  "x": 0.5,
+	  "y": 66.0,
+	  "z": -64.5
+	}
+  },
+  {
+    "DmxId": 19,
+    "DmxType": "ParticleFlare",
+	"Location": {
+	  "x": -32.9,
+	  "y": 55.5,
+	  "z": -55.9
+	},
+	"Yaw": 25
+  },
+  {
+    "DmxId": 27,
+    "DmxType": "ParticleFlare",
+	"Location": {
+	  "x": 33.9,
+	  "y": 55.5,
+	  "z": -55.9
+	},
+	"Yaw": -25
+  }
+]

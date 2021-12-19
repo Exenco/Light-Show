@@ -6,17 +6,19 @@ import com.google.gson.JsonObject;
 import net.exenco.lightshow.LightShow;
 import net.exenco.lightshow.show.artnet.ArtNetClient;
 import net.exenco.lightshow.show.song.SongManager;
-import net.exenco.lightshow.show.stage.effects.*;
+import net.exenco.lightshow.show.stage.fixtures.*;
 import net.exenco.lightshow.util.*;
-import net.exenco.lightshow.util.file.ConfigHandler;
-import net.exenco.lightshow.util.registries.FireworkRegistry;
-import net.exenco.lightshow.util.registries.LogoRegistry;
+import net.exenco.lightshow.util.ConfigHandler;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class StageManager {
-    private final TreeMap<Integer, HashMap<Integer, ArrayList<ShowEffect>>> dmxMap = new TreeMap<>();
+
+    private final HashMap<String, Class<? extends ShowFixture>> fixtureMap = new HashMap<>();
+
+    private final TreeMap<Integer, HashMap<Integer, ArrayList<ShowFixture>>> dmxMap = new TreeMap<>();
     private final ArtNetClient artNetClient;
     private DmxReader dmxReader;
 
@@ -25,33 +27,27 @@ public class StageManager {
     private final ShowSettings showSettings;
     private final SongManager songManager;
     private final PacketHandler packetHandler;
-    private final FireworkRegistry fireworkRegistry;
-    private final LogoRegistry logoRegistry;
     public StageManager(LightShow lightShow, ConfigHandler configHandler, ShowSettings showSettings, SongManager songManager,
-                        PacketHandler packetHandler, FireworkRegistry fireworkRegistry, LogoRegistry logoRegistry) {
-        this.artNetClient = new ArtNetClient(lightShow, showSettings.artNet().port());
+                        PacketHandler packetHandler) {
+        this.artNetClient = new ArtNetClient(lightShow);
 
         this.lightShow = lightShow;
         this.configHandler = configHandler;
         this.showSettings = showSettings;
         this.songManager = songManager;
         this.packetHandler = packetHandler;
-        this.fireworkRegistry = fireworkRegistry;
-        this.logoRegistry = logoRegistry;
-
-        load();
     }
 
     public void load() {
         dmxMap.clear();
-        for(Map.Entry<Integer, String> entry : showSettings.dmxUniverseMap().entrySet()) {
-            int universeId = entry.getKey();
-            JsonArray jsonArray = configHandler.getDmxUniverseJson(entry.getValue());
+        for(ShowSettings.DmxEntry dmxEntry : showSettings.dmxEntryList()) {
+            int universeId = dmxEntry.universe();
+            JsonArray jsonArray = configHandler.getDmxEntriesJson(dmxEntry.filename());
 
             for(JsonElement jsonElement : jsonArray) {
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                JsonObject configJson = jsonElement.getAsJsonObject();
 
-                int id = jsonObject.get("DmxId").getAsInt() - 1;
+                int id = configJson.get("DmxId").getAsInt() - 1 + dmxEntry.offset();
                 int universe = universeId - 1;
 
                 if(id < 0 || universeId < 0)
@@ -60,37 +56,40 @@ public class StageManager {
                 if(!dmxMap.containsKey(universe))
                     dmxMap.put(universe, new HashMap<>());
 
-                HashMap<Integer, ArrayList<ShowEffect>> subMap = dmxMap.get(universe);
-                String type = jsonObject.get("DmxType").getAsString();
+                HashMap<Integer, ArrayList<ShowFixture>> subMap = dmxMap.get(universe);
+                String type = configJson.get("DmxType").getAsString();
 
-                switch(type) {
-                    case "SongSelector" -> put(subMap, id, new SongSelector(showSettings, songManager));
-                    case "MovingHead" -> put(subMap, id, new MovingHead(jsonObject, showSettings, packetHandler));
-                    case "Beacon" -> put(subMap, id, new BeaconBeam(jsonObject, showSettings, packetHandler));
-                    case "FireworkLauncher" -> put(subMap, id, new FireworkLauncher(jsonObject, packetHandler, fireworkRegistry));
-                    case "ParticleFlare" -> put(subMap, id, new ParticleFlare(jsonObject, packetHandler));
-                    case "LogoDisplay" -> put(subMap, id, new LogoDisplay(jsonObject, packetHandler, logoRegistry));
-                    case "FogMachine" -> put(subMap, id, new FogMachine(jsonObject, packetHandler));
-                    case "BlockUpdater" -> put(subMap, id, new BlockUpdater(jsonObject, packetHandler));
-                    default -> lightShow.getLogger().warning("Given Dmx-Type " + type + " is not a valid type.");
+                if(!fixtureMap.containsKey(type))
+                    lightShow.getLogger().warning("Given Dmx-Type " + type + " is not a valid type.");
+
+                try {
+                    Class<? extends ShowFixture> clazz = fixtureMap.get(type);
+                    if(clazz == null)
+                        continue;
+
+                    if(!subMap.containsKey(id))
+                        subMap.put(id, new ArrayList<>());
+                    ShowFixture fixture = clazz.getDeclaredConstructor(JsonObject.class, StageManager.class).newInstance(configJson, this);
+                    subMap.get(id).add(fixture);
+                } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
-    private void put(HashMap<Integer, ArrayList<ShowEffect>> map, int id, ShowEffect showEffect) {
-        if(!map.containsKey(id))
-            map.put(id, new ArrayList<>());
-        map.get(id).add(showEffect);
+    public void registerFixture(String key, Class<? extends ShowFixture> clazz) {
+        fixtureMap.put(key, clazz);
     }
 
     public boolean start() {
         String address = showSettings.artNet().ip();
+        int port = showSettings.artNet().port();
         if(dmxReader != null) {
-            return this.artNetClient.start(address);
+            return this.artNetClient.start(address, port);
         }
 
-        if(this.artNetClient.start(address)) {
+        if(this.artNetClient.start(address, port)) {
             this.dmxReader = new DmxReader();
             this.dmxReader.runTaskAsynchronously(lightShow);
             return true;
@@ -113,11 +112,11 @@ public class StageManager {
         public void run() {
             running = true;
             while(running) {
-                for (Map.Entry<Integer, HashMap<Integer, ArrayList<ShowEffect>>> entry : dmxMap.entrySet()) {
+                for (Map.Entry<Integer, HashMap<Integer, ArrayList<ShowFixture>>> entry : dmxMap.entrySet()) {
                     byte[] data = artNetClient.readDmx(entry.getKey());
-                    for (Map.Entry<Integer, ArrayList<ShowEffect>> subEntry : entry.getValue().entrySet()) {
+                    for (Map.Entry<Integer, ArrayList<ShowFixture>> subEntry : entry.getValue().entrySet()) {
                         int id = subEntry.getKey();
-                        for(ShowEffect showEffect : subEntry.getValue()) {
+                        for(ShowFixture showEffect : subEntry.getValue()) {
                             int size = showEffect.getDmxSize();
                             int[] dataArr = new int[size];
                             for (int x = 0; x < size; x++)
@@ -134,5 +133,21 @@ public class StageManager {
             running = false;
             super.cancel();
         }
+    }
+
+    public ShowSettings getShowSettings() {
+        return showSettings;
+    }
+
+    public ConfigHandler getConfigHandler() {
+        return configHandler;
+    }
+
+    public SongManager getSongManager() {
+        return songManager;
+    }
+
+    public PacketHandler getPacketHandler() {
+        return packetHandler;
     }
 }

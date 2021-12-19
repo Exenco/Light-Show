@@ -1,14 +1,12 @@
 package net.exenco.lightshow.util;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.exenco.lightshow.util.file.ConfigHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class to load and administer settings set by the user via files.
@@ -24,10 +22,7 @@ public class ShowSettings {
     private Commands commands;
     private ArtNet artNet;
     private EffectSettings showEffects;
-    private Map<Integer, String> dmxUniverseMap;
-    private Map<Integer, String> songMap;
-    private Map<Integer, String> logoMap;
-    private Map<Integer, String> fireworkMap;
+    private List<DmxEntry> dmxEntryList;
     private Stage stage;
 
     /**
@@ -39,10 +34,11 @@ public class ShowSettings {
         this.showEffects = EffectSettings.valueOf(configJson.getAsJsonObject("EffectSettings"));
         this.artNet = ArtNet.valueOf(configJson.getAsJsonObject("ArtNet"));
         this.stage = Stage.valueOf(configJson.getAsJsonObject("Stage"));
-        this.dmxUniverseMap = getFileIdentifierMap(configJson.getAsJsonArray("DmxUniverses"));
-        this.songMap = getFileIdentifierMap(configJson.getAsJsonArray("Songs"));
-        this.logoMap = getFileIdentifierMap(configJson.getAsJsonArray("Logos"));
-        this.fireworkMap = getFileIdentifierMap(configJson.getAsJsonArray("Fireworks"));
+
+        this.dmxEntryList = new ArrayList<>();
+        for(JsonElement jsonElement : configJson.getAsJsonArray("DmxEntries")) {
+            dmxEntryList.add(DmxEntry.valueOf(jsonElement.getAsJsonObject()));
+        }
     }
 
     /**
@@ -53,31 +49,10 @@ public class ShowSettings {
     }
 
     /**
-     * @return Identifier map for DmxUniverses.
+     * @return Identifier list for Dmx entries.
      */
-    public Map<Integer, String> dmxUniverseMap() {
-        return this.dmxUniverseMap;
-    }
-
-    /**
-     * @return Identifier map for songs.
-     */
-    public Map<Integer, String> songMap() {
-        return this.songMap;
-    }
-
-    /**
-     * @return Identifier map for logos.
-     */
-    public Map<Integer, String> logoMap() {
-        return this.logoMap;
-    }
-
-    /**
-     * @return Identifier map for fireworks.
-     */
-    public Map<Integer, String> fireworkMap() {
-        return this.fireworkMap;
+    public List<DmxEntry> dmxEntryList() {
+        return this.dmxEntryList;
     }
 
     /**
@@ -101,12 +76,14 @@ public class ShowSettings {
         return this.stage;
     }
 
-    public record Commands(String noPermission, String notAllowed, String reload) {
+    public record Commands(String noPermission, String notAllowed, String reload, String toggleOn, String toggleOff) {
         public static Commands valueOf(JsonObject jsonObject) {
             String noPermission = jsonObject.get("NoPermission").getAsString();
             String notAllowed = jsonObject.get("NotAllowed").getAsString();
             String reload = jsonObject.get("Reload").getAsString();
-            return new Commands(noPermission, notAllowed, reload);
+            String toggleOn = jsonObject.get("ToggleOn").getAsString();
+            String toggleOff = jsonObject.get("ToggleOff").getAsString();
+            return new Commands(noPermission, notAllowed, reload, toggleOn, toggleOff);
         }
     }
 
@@ -122,18 +99,11 @@ public class ShowSettings {
         }
     }
 
-    public record EffectSettings(Selector selector, Beacon beacon, MovingLight movingLight) {
+    public record EffectSettings(Selector selector, MovingLight movingLight) {
         public record Selector(int maxValue) {
             public static Selector valueOf(JsonObject jsonObject) {
                 int maxValue = jsonObject.get("MaxValue").getAsInt();
                 return new Selector(maxValue);
-            }
-        }
-
-        public record Beacon(Material disabledBlock) {
-            public static Beacon valueOf(JsonObject jsonObject) {
-                Material disabledBlock = Material.valueOf(jsonObject.get("DisabledBlock").getAsString().toUpperCase());
-                return new Beacon(disabledBlock);
             }
         }
 
@@ -149,9 +119,8 @@ public class ShowSettings {
 
         public static EffectSettings valueOf(JsonObject jsonObject) {
             Selector selector = Selector.valueOf(jsonObject.getAsJsonObject("SongSelector"));
-            Beacon beacon = Beacon.valueOf(jsonObject.getAsJsonObject("Beacon"));
             MovingLight movingLight = MovingLight.valueOf(jsonObject.getAsJsonObject("MovingLight"));
-            return new EffectSettings(selector, beacon, movingLight);
+            return new EffectSettings(selector, movingLight);
         }
     }
 
@@ -159,21 +128,21 @@ public class ShowSettings {
         public static Stage valueOf(JsonObject jsonObject) {
             String information = jsonObject.get("Information").getAsString();
             String noCurrentSong = jsonObject.get("NoCurrentSong").getAsString();
-            String termsOfService = jsonObject.get("TermsOfService").getAsString();
+            String termsOfService = jsonObject.get("Warning").getAsString();
             Location location = ConfigHandler.translateLocation(jsonObject.getAsJsonObject("Location"));
+            if(location.getWorld() == null || Bukkit.getWorld(location.getWorld().getUID()) == null)
+                throw new NullPointerException("World entered for stage location is not valid! " + location);
             double radius = jsonObject.get("Radius").getAsDouble();
             return new Stage(information, noCurrentSong, termsOfService, location, radius);
         }
     }
 
-    private Map<Integer, String> getFileIdentifierMap(JsonArray jsonArray) {
-        Map<Integer, String> map = new HashMap<>();
-        for(JsonElement jsonElement : jsonArray) {
-            JsonObject jsonObject = jsonElement.getAsJsonObject();
-            int id = jsonObject.get("Id").getAsInt();
-            String file = jsonObject.get("Filename").getAsString();
-            map.put(id, file);
+    public record DmxEntry(int universe, String filename, int offset) {
+        public static DmxEntry valueOf(JsonObject jsonObject) {
+            int universe = jsonObject.get("Universe").getAsInt();
+            String filename = jsonObject.get("Filename").getAsString();
+            int offset = jsonObject.has("Offset") ? jsonObject.get("Offset").getAsInt() : 0;
+            return new DmxEntry(universe, filename, offset);
         }
-        return map;
     }
 }

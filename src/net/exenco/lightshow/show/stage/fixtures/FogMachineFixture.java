@@ -1,29 +1,30 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
+import net.exenco.lightshow.show.stage.StageManager;
 import net.exenco.lightshow.util.PacketHandler;
 import net.exenco.lightshow.util.VectorUtils;
-import net.exenco.lightshow.util.registries.ParticleRegistry;
+import net.exenco.lightshow.util.ParticleRegistry;
 import org.bukkit.Particle;
 import org.bukkit.util.Vector;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class FogMachine extends ShowEffect {
+public class FogMachineFixture extends ShowFixture {
     private final double maxOffset;
     private final double maxVelocity;
     private final Vector direction;
 
     private final PacketHandler packetHandler;
-    public FogMachine(JsonObject jsonObject, PacketHandler packetHandler) {
-        super(jsonObject);
-        this.packetHandler = packetHandler;
-        this.tickSize = 50;
+    public FogMachineFixture(JsonObject configJson, StageManager stageManager) {
+        super(configJson, stageManager);
+        this.packetHandler = stageManager.getPacketHandler();
 
-        this.maxOffset = jsonObject.has("MaxOffset") ? jsonObject.get("MaxOffset").getAsDouble() : 0.5;
-        this.maxVelocity = jsonObject.has("MaxVelocity") ? jsonObject.get("MaxVelocity").getAsDouble() : 2;
-        double yaw = jsonObject.has("Yaw") ? jsonObject.get("Yaw").getAsDouble() : 0;
-        double pitch = jsonObject.has("Pitch") ? jsonObject.get("Pitch").getAsDouble() : 0;
+        this.tickSize = configJson.has("TickSize") ? configJson.get("TickSize").getAsInt() : 50;
+        this.maxOffset = configJson.has("MaxOffset") ? configJson.get("MaxOffset").getAsDouble() : 0.5;
+        this.maxVelocity = configJson.has("MaxVelocity") ? configJson.get("MaxVelocity").getAsDouble() : 2;
+        double yaw = configJson.has("Yaw") ? configJson.get("Yaw").getAsDouble() : 0;
+        double pitch = configJson.has("Pitch") ? configJson.get("Pitch").getAsDouble() : 0;
 
         this.direction = VectorUtils.getDirectionVector(-yaw, -pitch + 90).normalize();
     }
@@ -52,7 +53,7 @@ public class FogMachine extends ShowEffect {
                 location.add(getRandomVector(offset));
                 Vector direction = this.direction.clone();
                 direction.add(getRandomVector(smallOffset));
-                packetHandler.spawnParticle(particle, location, 0, direction.getX(), direction.getY(), direction.getZ(), velocity, null, true);
+                packetHandler.spawnParticle(particle, location, 0, direction.getX(), direction.getY(), direction.getZ(), velocity, null);
             }
         }
     }

@@ -21,7 +21,7 @@ public class ParticleFlareApi {
     }
 
     public void play() {
-        packetHandler.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, time, data, true);
+        packetHandler.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, time, data);
     }
 
     public void setLocation(Vector location) {

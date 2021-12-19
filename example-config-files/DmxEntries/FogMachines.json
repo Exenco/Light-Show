@@ -1,0 +1,272 @@
+[
+  {
+    "DmxId": 1,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -48.5,
+	  "y": 53.0,
+	  "z": -49.5
+	}
+  },
+  {
+    "DmxId": 5,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -45.0,
+	  "y": 53.0,
+	  "z": -51.0
+	}
+  },
+  {
+    "DmxId": 9,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -35.5,
+	  "y": 56.0,
+	  "z": -58.5
+	}
+  },
+  {
+    "DmxId": 13,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -30.5,
+	  "y": 56.0,
+	  "z": -60.5
+	}
+  },
+  {
+    "DmxId": 17,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -25.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 21,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -21.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 25,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -17.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 29,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -13.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 33,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -9.5,
+	  "y": 65.0,
+	  "z": -64.5
+	}
+  },
+  {
+    "DmxId": 37,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -9.5,
+	  "y": 52.0,
+	  "z": -56.5
+	}
+  },
+  {
+    "DmxId": 41,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -6.5,
+	  "y": 52.0,
+	  "z": -55.5
+	}
+  },
+  {
+    "DmxId": 45,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -3.5,
+	  "y": 52.0,
+	  "z": -53.5
+	}
+  },
+  {
+    "DmxId": 49,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -1.5,
+	  "y": 52.0,
+	  "z": -53.5
+	}
+  },
+  {
+    "DmxId": 53,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": -1.5,
+	  "y": 50.0,
+	  "z": -50.5
+	}
+  },
+  {
+    "DmxId": 57,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 0.5,
+	  "y": 52.0,
+	  "z": -53.5
+	}
+  },
+  {
+    "DmxId": 61,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 0.5,
+	  "y": 50.0,
+	  "z": -50.5
+	}
+  },
+  {
+    "DmxId": 65,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 2.5,
+	  "y": 52.0,
+	  "z": -53.5
+	}
+  },
+  {
+    "DmxId": 69,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 2.5,
+	  "y": 50.0,
+	  "z": -50.5
+	}
+  },
+  {
+    "DmxId": 73,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 4.5,
+	  "y": 52.0,
+	  "z": -53.5
+	}
+  },
+  {
+    "DmxId": 77,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 7.5,
+	  "y": 52.0,
+	  "z": -55.5
+	}
+  },
+  {
+    "DmxId": 81,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 10.5,
+	  "y": 52.0,
+	  "z": -56.5
+	}
+  },
+  {
+    "DmxId": 85,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 10.5,
+	  "y": 65.0,
+	  "z": -64.5
+	}
+  },
+  {
+    "DmxId": 89,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 14.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 93,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 18.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 97,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 22.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 101,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 26.5,
+	  "y": 56.0,
+	  "z": -62.5
+	}
+  },
+  {
+    "DmxId": 105,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 31.5,
+	  "y": 56.0,
+	  "z": -60.5
+	}
+  },
+  {
+    "DmxId": 109,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 36.5,
+	  "y": 56.0,
+	  "z": -58.6
+	}
+  },
+  {
+    "DmxId": 113,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 46.6,
+	  "y": 53.0,
+	  "z": -51.5
+	}
+  },
+  {
+    "DmxId": 117,
+    "DmxType": "FogMachine",
+	"Location": {
+	  "x": 49.5,
+	  "y": 53.0,
+	  "z": -49.5
+	}
+  }
+]

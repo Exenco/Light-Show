@@ -34,7 +34,7 @@ public class GuardianBeamApi {
         if(this.destination != null && this.destination.equals(destination))
             return;
         this.destination = destination;
-        entitySquid.setPosition(destination.getX(), destination.getY(), destination.getZ());
+        entitySquid.e(destination.getX(), destination.getY(), destination.getZ());
         packetHandler.moveEntity(entitySquid);
     }
 
@@ -47,27 +47,27 @@ public class GuardianBeamApi {
             destination = start;
 
         this.entityGuardian = new EntityGuardian(EntityTypes.K, packetHandler.getWorld());
-        this.entityGuardian.setPosition(start.getX(), start.getY(), start.getZ());
-        this.entityGuardian.setInvisible(true);
+        this.entityGuardian.e(start.getX(), start.getY(), start.getZ());
+        this.entityGuardian.j(true);
 
         this.entitySquid = new EntitySquid(EntityTypes.aJ, packetHandler.getWorld());
-        this.entitySquid.setPosition(destination.getX(), destination.getY(), destination.getZ());
-        this.entitySquid.setInvisible(true);
+        this.entitySquid.e(destination.getX(), destination.getY(), destination.getZ());
+        this.entitySquid.j(true);
 
-        setGuardianTarget(entityGuardian, entitySquid.getId());
+        setGuardianTarget(entityGuardian, entitySquid.ae());
 
         packetHandler.spawnEntity(entitySquid);
         packetHandler.spawnEntity(entityGuardian);
 
-        UUID[] uuids = new UUID[] {entityGuardian.getUniqueID(), entitySquid.getUniqueID()};
+        UUID[] uuids = new UUID[] {entityGuardian.cm(), entitySquid.cm()};
         ScoreboardTeam scoreboardTeam = registerNewTeam("noClip" + teamId++, uuids);
         packetHandler.createTeam(scoreboardTeam);
     }
 
     public void destroy() {
         spawned = false;
-        packetHandler.destroyEntity(entityGuardian.getId());
-        packetHandler.destroyEntity(entitySquid.getId());
+        packetHandler.destroyEntity(entityGuardian.ae());
+        packetHandler.destroyEntity(entitySquid.ae());
     }
 
     public void callColorChange() {
@@ -91,8 +91,8 @@ public class GuardianBeamApi {
 
     private ScoreboardTeam registerNewTeam(String teamName, UUID[] uuids) {
         ScoreboardTeam scoreboardTeam = new ScoreboardTeam(new Scoreboard(), teamName);
-        scoreboardTeam.setCollisionRule(ScoreboardTeamBase.EnumTeamPush.b);
-        Collection<String> entries = scoreboardTeam.getPlayerNameSet();
+        scoreboardTeam.a(ScoreboardTeamBase.EnumTeamPush.b);
+        Collection<String> entries = scoreboardTeam.g();
         for(UUID uuid : uuids) {
             entries.add(uuid.toString());
         }

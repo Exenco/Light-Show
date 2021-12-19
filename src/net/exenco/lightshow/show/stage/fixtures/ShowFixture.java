@@ -1,18 +1,18 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
-import net.exenco.lightshow.util.file.ConfigHandler;
+import net.exenco.lightshow.show.stage.StageManager;
+import net.exenco.lightshow.util.ConfigHandler;
 import org.bukkit.util.Vector;
 
-public abstract class ShowEffect {
+public abstract class ShowFixture {
     protected final Vector location;
-    protected long tickSize = 100;
-    public ShowEffect(JsonObject jsonObject) {
-        if(!jsonObject.has("Location")) {
-            this.location = new Vector(0, 0, 0);
-            return;
-        }
-        this.location = ConfigHandler.translateVector(jsonObject.getAsJsonObject("Location"));
+    protected final StageManager stageManager;
+    protected long tickSize;
+    public ShowFixture(JsonObject configJson, StageManager stageManager) {
+        this.stageManager = stageManager;
+        this.location = configJson.has("Location") ? ConfigHandler.translateVector(configJson.getAsJsonObject("Location")) : new Vector(0, 0, 0);
+        this.tickSize = configJson.has("TickSize") ? configJson.get("TickSize").getAsInt() : 100;
     }
 
     public abstract int getDmxSize();
@@ -22,14 +22,12 @@ public abstract class ShowEffect {
     protected double valueOf(int data) {
         return (double) data / 255;
     }
-
     protected double valueOfMax(double max, int data) {
         return max * ((double) data / 255);
     }
     protected int asRoundedPercentage(int data) {
         return Math.round(100.0F * ((float) data / 255));
     }
-
     private long millis = 0;
     protected boolean isTick() {
         long current = System.currentTimeMillis();
