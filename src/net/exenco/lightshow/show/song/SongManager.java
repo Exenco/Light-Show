@@ -2,13 +2,15 @@ package net.exenco.lightshow.show.song;
 
 import com.google.gson.JsonObject;
 import net.exenco.lightshow.util.PacketHandler;
-import net.exenco.lightshow.util.file.ConfigHandler;
+import net.exenco.lightshow.util.ConfigHandler;
 import net.exenco.lightshow.util.ShowSettings;
 import org.bukkit.SoundCategory;
 import org.bukkit.util.Vector;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Objects;
 
 public class SongManager {
     private final ConfigHandler configHandler;
@@ -25,11 +27,19 @@ public class SongManager {
 
     public void loadSongs() {
         songList.clear();
-        for(Map.Entry<Integer, String> entry : showSettings.songMap().entrySet()) {
-            int id = entry.getKey();
-            JsonObject songJson = configHandler.getSongJson(entry.getValue());
-            ShowSong showSong = new ShowSong(id, songJson);
-            songList.put(id, showSong);
+
+        File directory = new File("plugins//Light-Show//Songs");
+        configHandler.createDirectory(directory);
+
+        for(File file : Objects.requireNonNull(directory.listFiles())) {
+            if(!file.getName().endsWith(".json"))
+                continue;
+            try {
+                JsonObject jsonObject = configHandler.getJsonFromFile(file).getAsJsonObject();
+                int id = jsonObject.get("Id").getAsInt();
+                ShowSong showSong = new ShowSong(id, jsonObject);
+                songList.put(id, showSong);
+            } catch(Exception ignored) {}
         }
     }
 

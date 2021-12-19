@@ -27,7 +27,7 @@ public class ParticleLineApi {
         Vector iterator = start.clone();
         Vector direc = destination.clone().subtract(start).normalize().multiply(0.15);
         for(double distance = 0; distance < maxDistance; distance = iterator.distance(start)) {
-            packetHandler.spawnParticle(particle, iterator, 1, offsetX, offsetY, offsetZ, time, data, true);
+            packetHandler.spawnParticle(particle, iterator, 1, offsetX, offsetY, offsetZ, time, data);
             iterator.add(direc);
         }
     }

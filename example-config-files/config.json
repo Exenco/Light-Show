@@ -27,7 +27,46 @@
     "AlreadyStopped": "§cArt-Net is not running!"
   },
   "DmxEntries": [
-
+    {
+      "Universe": 1,
+      "Filename": "Universe1",
+      "Offset": 0
+    },
+    {
+      "Universe": 2,
+      "Filename": "Fireworks",
+      "Offset": 0
+    },
+    {
+      "Universe": 3,
+      "Filename": "Beacon",
+      "Offset": 0
+    },
+    {
+      "Universe": 4,
+      "Filename": "MovingHeadsOne",
+      "Offset": 0
+    },
+    {
+      "Universe": 5,
+      "Filename": "FogMachines",
+      "Offset": 0
+    },
+    {
+      "Universe": 6,
+      "Filename": "MovingHeadsTwo",
+      "Offset": 0
+    },
+    {
+      "Universe": 7,
+      "Filename": "MovingHeadsThree",
+      "Offset": 0
+    },
+    {
+      "Universe": 8,
+      "Filename": "Lamps",
+      "Offset": 0
+    }
   ],
   "EffectSettings": {
     "SongSelector": {

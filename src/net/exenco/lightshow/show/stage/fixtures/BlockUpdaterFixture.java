@@ -1,24 +1,26 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
+import net.exenco.lightshow.show.stage.StageManager;
+import net.exenco.lightshow.util.ConfigHandler;
 import net.exenco.lightshow.util.PacketHandler;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Lightable;
 
-public class BlockUpdater extends ShowEffect {
+public class BlockUpdaterFixture extends ShowFixture {
     private final boolean lit;
     private final Material enabledState;
     private final Material disabledState;
 
     private final PacketHandler packetHandler;
-    public BlockUpdater(JsonObject jsonObject, PacketHandler packetHandler) {
-        super(jsonObject);
-        this.packetHandler = packetHandler;
+    public BlockUpdaterFixture(JsonObject jsonObject, StageManager stageManager) {
+        super(jsonObject, stageManager);
+        this.packetHandler = stageManager.getPacketHandler();
 
         this.lit = !jsonObject.has("Lit") || jsonObject.get("Lit").getAsBoolean();
-        this.enabledState = jsonObject.has("EnabledState") ? Material.valueOf(jsonObject.get("EnabledState").getAsString()) : Material.REDSTONE_LAMP;
-        this.disabledState = jsonObject.has("DisabledState") ? Material.valueOf(jsonObject.get("DisabledState").getAsString()) : Material.REDSTONE_LAMP;
+        this.enabledState = jsonObject.has("EnabledState") ? ConfigHandler.getMaterialFromName(jsonObject.get("EnabledState").getAsString()) : Material.REDSTONE_LAMP;
+        this.disabledState = jsonObject.has("DisabledState") ? ConfigHandler.getMaterialFromName(jsonObject.get("DisabledState").getAsString()) : Material.REDSTONE_LAMP;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.exenco.lightshow.util.registries;
+package net.exenco.lightshow.util;
 
 import org.bukkit.Particle;
 
@@ -36,7 +36,6 @@ public enum ParticleRegistry {
     SNOW_SHOVEL(29, Particle.SNOW_SHOVEL),
     SLIME(30, Particle.SLIME),
     HEART(31, Particle.HEART),
-    BARRIER(32, Particle.BARRIER),
     WATER_DROP(33, Particle.WATER_DROP),
     MOB_APPEARANCE(34, Particle.MOB_APPEARANCE),
     DRAGON_BREATH(35, Particle.DRAGON_BREATH),
@@ -73,7 +72,6 @@ public enum ParticleRegistry {
     LANDING_OBSIDIAN_TEAR(66, Particle.LANDING_OBSIDIAN_TEAR),
     REVERSE_PORTAL(67, Particle.REVERSE_PORTAL),
     WHITE_ASH(68, Particle.WHITE_ASH),
-    LIGHT(69, Particle.LIGHT),
     FALLING_SPORE_BLOSSOM(70, Particle.FALLING_SPORE_BLOSSOM),
     SPORE_BLOSSOM_AIR(71, Particle.SPORE_BLOSSOM_AIR),
     SMALL_FLAME(72, Particle.SMALL_FLAME),

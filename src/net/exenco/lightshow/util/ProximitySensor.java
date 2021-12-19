@@ -2,7 +2,7 @@ package net.exenco.lightshow.util;
 
 import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -14,7 +14,8 @@ import java.util.List;
  * Everyone that enters is being sent every change the plugin has made so far.
  */
 public class ProximitySensor {
-    private final List<PlayerConnection> playerConnectionList;
+    private final List<CraftPlayer> playerList;
+    private final List<CraftPlayer> toggleList;
 
     private Location anchor;
     private double radius;
@@ -23,7 +24,8 @@ public class ProximitySensor {
     private PacketHandler packetHandler;
     public ProximitySensor(ShowSettings showSettings) {
         this.showSettings = showSettings;
-        this.playerConnectionList = new ArrayList<>();
+        this.playerList = new ArrayList<>();
+        this.toggleList = new ArrayList<>();
 
         load();
     }
@@ -32,7 +34,7 @@ public class ProximitySensor {
      * Loads all necessary information.
      */
     public void load() {
-        this.playerConnectionList.clear();
+        this.playerList.clear();
 
         this.radius = showSettings.stage().radius();
         this.anchor = showSettings.stage().location();
@@ -46,18 +48,17 @@ public class ProximitySensor {
         Location playerLocation = player.getLocation();
         CraftPlayer craftPlayer = (CraftPlayer) player;
 
-        PlayerConnection playerConnection = craftPlayer.getHandle().b;
         if(playerLocation.distance(anchor) <= radius) {
-            if(playerConnectionList.contains(playerConnection))
+            if(playerList.contains(craftPlayer) || toggleList.contains(craftPlayer))
                 return;
-            playerConnectionList.add(playerConnection);
+            playerList.add(craftPlayer);
             craftPlayer.sendMessage(showSettings.stage().termsOfService());
-            packetHandler.set(playerConnection);
+            packetHandler.set(craftPlayer);
         } else {
-            if(!playerConnectionList.contains(playerConnection))
+            if(!playerList.contains(craftPlayer))
                 return;
-            playerConnectionList.remove(playerConnection);
-            packetHandler.reset(playerConnection);
+            playerList.remove(craftPlayer);
+            packetHandler.reset(craftPlayer);
         }
     }
 
@@ -71,9 +72,24 @@ public class ProximitySensor {
     }
 
     /**
-     * @return List of {@link PlayerConnection}s which are currently in range.
+     * @return List of {@link CraftPlayer}s which are currently in range.
      */
-    public List<PlayerConnection> getPlayerConnectionList() {
-        return playerConnectionList;
+    public List<CraftPlayer> getPlayerList() {
+        return playerList;
+    }
+
+    public void addTogglePlayer(Player player) {
+        CraftPlayer craftPlayer = (CraftPlayer) player;
+        packetHandler.reset(craftPlayer);
+        toggleList.add(craftPlayer);
+        playerList.remove(craftPlayer);
+    }
+
+    public void removeTogglePlayer(Player player) {
+        toggleList.remove((CraftPlayer) player);
+    }
+
+    public boolean containsTogglePlayer(Player player) {
+        return toggleList.contains((CraftPlayer) player);
     }
 }

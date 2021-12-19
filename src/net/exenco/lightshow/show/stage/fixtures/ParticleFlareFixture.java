@@ -1,12 +1,13 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
+import net.exenco.lightshow.show.stage.StageManager;
 import net.exenco.lightshow.util.PacketHandler;
-import net.exenco.lightshow.util.registries.ParticleRegistry;
+import net.exenco.lightshow.util.ParticleRegistry;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 
-public class ParticleFlare extends ShowEffect {
+public class ParticleFlareFixture extends ShowFixture {
     private final double maxXOffset;
     private final double maxYOffset;
     private final double maxZOffset;
@@ -14,9 +15,9 @@ public class ParticleFlare extends ShowEffect {
     private final float maxSize;
 
     private final PacketHandler packetHandler;
-    public ParticleFlare(JsonObject jsonObject, PacketHandler packetHandler) {
-        super(jsonObject);
-        this.packetHandler = packetHandler;
+    public ParticleFlareFixture(JsonObject jsonObject, StageManager stageManager) {
+        super(jsonObject, stageManager);
+        this.packetHandler = stageManager.getPacketHandler();
 
         this.maxXOffset = jsonObject.has("MaxXOffset") ? jsonObject.get("MaxXOffset").getAsDouble() : 1;
         this.maxYOffset = jsonObject.has("MaxYOffset") ? jsonObject.get("MaxYOffset").getAsDouble() : 1;
@@ -53,7 +54,7 @@ public class ParticleFlare extends ShowEffect {
         double offsetZ = maxZOffset * offset;
 
         if(isTick() && count > 0) {
-            packetHandler.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, time, particleData, true);
+            packetHandler.spawnParticle(particle, location, count, offsetX, offsetY, offsetZ, time, particleData);
         }
     }
 }

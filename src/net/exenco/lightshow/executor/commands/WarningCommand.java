@@ -6,20 +6,20 @@ import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 
-public class TosCommand extends ShowCommand {
+public class WarningCommand extends ShowCommand {
 
-    public TosCommand(ShowSettings showSettings) {
+    public WarningCommand(ShowSettings showSettings) {
         super(showSettings);
     }
 
     @Override
     public String getName() {
-        return "tos";
+        return "warning";
     }
 
     @Override
     public String getPermission() {
-        return "lightshow.tos";
+        return "lightshow.warning";
     }
 
     @Override

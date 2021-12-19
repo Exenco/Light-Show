@@ -4,10 +4,9 @@ import net.exenco.lightshow.executor.ShowExecutor;
 import net.exenco.lightshow.listener.PlayerMoveListener;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.StageManager;
+import net.exenco.lightshow.show.stage.fixtures.*;
 import net.exenco.lightshow.util.*;
-import net.exenco.lightshow.util.file.ConfigHandler;
-import net.exenco.lightshow.util.registries.FireworkRegistry;
-import net.exenco.lightshow.util.registries.LogoRegistry;
+import net.exenco.lightshow.util.ConfigHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.PluginManager;
@@ -24,8 +23,6 @@ public class LightShow extends JavaPlugin {
     private ProximitySensor proximitySensor;
     private PacketHandler packetHandler;
     private SongManager songManager;
-    private LogoRegistry logoRegistry;
-    private FireworkRegistry fireworkRegistry;
     private StageManager stageManager;
 
     /**
@@ -45,9 +42,17 @@ public class LightShow extends JavaPlugin {
         this.packetHandler = new PacketHandler(this, proximitySensor, showSettings);
         this.proximitySensor.setPacketHandler(packetHandler);
         this.songManager = new SongManager(configHandler, showSettings, packetHandler);
-        this.logoRegistry = new LogoRegistry(configHandler, showSettings);
-        this.fireworkRegistry = new FireworkRegistry(configHandler, showSettings);
-        this.stageManager = new StageManager(this, configHandler, showSettings, songManager, packetHandler, fireworkRegistry, logoRegistry);
+        this.stageManager = new StageManager(this, configHandler, showSettings, songManager, packetHandler);
+
+        /* Register Fixtures */
+        this.stageManager.registerFixture("Beacon", BeaconFixture.class);
+        this.stageManager.registerFixture("BlockUpdater", BlockUpdaterFixture.class);
+        this.stageManager.registerFixture("FireworkLauncher", FireworkFixture.class);
+        this.stageManager.registerFixture("FogMachine", FogMachineFixture.class);
+        this.stageManager.registerFixture("LogoDisplay", LogoFixture.class);
+        this.stageManager.registerFixture("MovingHead", MovingHeadFixture.class);
+        this.stageManager.registerFixture("ParticleFlare", ParticleFlareFixture.class);
+        this.registerFixture("SongSelector", SongSelectorFixture.class);
 
         /* Initialise listener */
         PluginManager pluginManager = Bukkit.getPluginManager();
@@ -55,7 +60,7 @@ public class LightShow extends JavaPlugin {
 
         /* Initialise executor */
         PluginCommand pluginCommand = Objects.requireNonNull(getCommand("show"));
-        ShowExecutor showExecutor = new ShowExecutor(this, showSettings, stageManager, songManager);
+        ShowExecutor showExecutor = new ShowExecutor(this, showSettings, stageManager, songManager, proximitySensor);
         pluginCommand.setExecutor(showExecutor);
         pluginCommand.setTabCompleter(showExecutor);
     }
@@ -66,10 +71,10 @@ public class LightShow extends JavaPlugin {
      */
     @Override
     public void onDisable() {
-        if(stageManager != null)
-            stageManager.stop();
-        if(packetHandler != null)
-            packetHandler.resetEverything();
+        if(this.stageManager != null)
+            this.stageManager.stop();
+        if(this.packetHandler != null)
+            this.packetHandler.resetEverything();
     }
 
     /**
@@ -86,11 +91,14 @@ public class LightShow extends JavaPlugin {
         this.configHandler.load();
         this.showSettings.load();
         this.proximitySensor.load();
-        this.logoRegistry.load();
-        this.fireworkRegistry.load();
         this.songManager.loadSongs();
         this.stageManager.load();
 
         this.getLogger().info("Successfully reloaded!");
+    }
+
+    public void registerFixture(String key, Class<? extends ShowFixture> clazz) {
+        this.stageManager.registerFixture(key, clazz);
+        this.stageManager.load();
     }
 }

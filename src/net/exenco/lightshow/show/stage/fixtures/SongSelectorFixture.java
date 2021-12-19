@@ -1,19 +1,17 @@
-package net.exenco.lightshow.show.stage.effects;
+package net.exenco.lightshow.show.stage.fixtures;
 
 import com.google.gson.JsonObject;
 import net.exenco.lightshow.show.song.SongManager;
-import net.exenco.lightshow.util.ShowSettings;
+import net.exenco.lightshow.show.stage.StageManager;
 
-import java.util.logging.Logger;
-
-public class SongSelector extends ShowEffect {
+public class SongSelectorFixture extends ShowFixture {
 
     private final int range;
     private final SongManager songManager;
-    public SongSelector(ShowSettings showSettings, SongManager songManager) {
-        super(new JsonObject());
-        this.songManager = songManager;
-        this.range = showSettings.showEffects().selector().maxValue();
+    public SongSelectorFixture(JsonObject configJson, StageManager stageManager) {
+        super(configJson, stageManager);
+        this.songManager = stageManager.getSongManager();
+        this.range = stageManager.getShowSettings().showEffects().selector().maxValue();
     }
 
     @Override

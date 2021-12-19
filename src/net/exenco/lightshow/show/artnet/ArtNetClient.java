@@ -13,21 +13,19 @@ import java.util.logging.Logger;
 public class ArtNetClient {
     private final LightShow lightShow;
     private final Logger logger;
-    private final int port;
 
     private SocketReader socketReader;
     private final ArtNetBuffer artNetBuffer;
     private DatagramSocket datagramSocket;
 
-    public ArtNetClient(LightShow lightShow, int port) {
+    public ArtNetClient(LightShow lightShow) {
         this.lightShow = lightShow;
         this.logger = lightShow.getLogger();
-        this.port = port;
 
         this.artNetBuffer = new ArtNetBuffer();
     }
 
-    public boolean start(String networkInterfaceAddress) {
+    public boolean start(String networkInterfaceAddress, int port) {
         if(socketReader != null || datagramSocket != null) {
             logger.severe("Art-Net has already been started.");
             return false;
