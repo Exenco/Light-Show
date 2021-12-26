@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
-out/
+Light-Show/out/
+ArtNetRedirector/out/
 
 # Log file
 *.log
