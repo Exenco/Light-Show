@@ -19,7 +19,7 @@
     "ToggleOff": "§7You will §cno longer §7see the light-show"
   },
   "ArtNet": {
-    "Server": false,
+    "Server": true,
     "Key": "ABCDEFGH",
     "Iv": "HGFEDCBA",
     "Ip": "127.0.0.1",
@@ -30,50 +30,11 @@
     "AlreadyStarted": "§cArt-Net has already been started!",
     "Stopping": "§7Stopping Art-Net...",
     "AlreadyStopped": "§cArt-Net is not running!",
-    "Connected": "§7Art-Net §aconnected§7!",
-    "NotConnected": "§7Art-Net §cnot connected§7!"
+    "Connected": "§7Art-Net is §aconnected§7!",
+    "NotConnected": "§7Art-Net is §cnot connected§7!"
   },
   "DmxEntries": [
-    {
-      "Universe": 1,
-      "Filename": "Universe1",
-      "Offset": 0
-    },
-    {
-      "Universe": 2,
-      "Filename": "Fireworks",
-      "Offset": 0
-    },
-    {
-      "Universe": 3,
-      "Filename": "Beacon",
-      "Offset": 0
-    },
-    {
-      "Universe": 4,
-      "Filename": "MovingHeadsOne",
-      "Offset": 0
-    },
-    {
-      "Universe": 5,
-      "Filename": "FogMachines",
-      "Offset": 0
-    },
-    {
-      "Universe": 6,
-      "Filename": "MovingHeadsTwo",
-      "Offset": 0
-    },
-    {
-      "Universe": 7,
-      "Filename": "MovingHeadsThree",
-      "Offset": 0
-    },
-    {
-      "Universe": 8,
-      "Filename": "Lamps",
-      "Offset": 0
-    }
+
   ],
   "EffectSettings": {
     "SongSelector": {
