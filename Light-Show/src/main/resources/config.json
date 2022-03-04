@@ -1,0 +1,50 @@
+{
+  "Stage": {
+    "Information": "§7The current song is §9%title%§7 by §9%artist%§7 form the album §9%album%§7 released in §9%year%§7.",
+    "NoCurrentSong": "§7There is no song being played.",
+    "Warning": "§cWarning: §7By entering this area you acknowledge that there will be strobe light effects.",
+    "Location": {
+      "world": "world",
+      "x": 0.5,
+      "y": 70,
+      "z": 0.5
+    },
+    "Radius": 200.0
+  },
+  "Commands": {
+    "NoPermission": "§cYou have no permission to execute this command.",
+    "NotAllowed": "§cYou are not allowed to execute this command.",
+    "Reload": "§aReloading successful.",
+    "ToggleOn": "§7You will §anow §7see the light-show",
+    "ToggleOff": "§7You will §cno longer §7see the light-show"
+  },
+  "ArtNet": {
+    "Server": false,
+    "Key": "ABCDEFGH",
+    "Iv": "HGFEDCBA",
+    "Ip": "127.0.0.1",
+    "Port": 6454,
+    "InvalidIp": "§cEntered ip is invalid: {0}",
+    "Timeout": 500,
+    "Starting": "§7Starting Art-Net...",
+    "AlreadyStarted": "§cArt-Net has already been started!",
+    "Stopping": "§7Stopping Art-Net...",
+    "AlreadyStopped": "§cArt-Net is not running!",
+    "Connected": "§7Art-Net §aconnected§7!",
+    "NotConnected": "§7Art-Net §cnot connected§7!"
+  },
+  "DmxEntries": [
+
+  ],
+  "EffectSettings": {
+    "SongSelector": {
+      "MaxValue": 100
+    },
+    "MovingLight": {
+      "OffTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjA5MDczYmE0NDBiZDdhMGJkNjdhNDM2NmIyMDM1NzdmYWVkMDZhOWM1ZGY2MGY2YmJlZDc3Mzg2NDM5NzUifX19",
+      "LowTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmJiMWEyNDdmZmJmMTdhOWFjODQzNzFmNDI4MWZlYjA1YmZmYmI1YTczYTI5MGNhNjA5YjM0MzhiOGNiZGIzIn19fQ==",
+      "MediumTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjExZDBiMzkyOWZiM2RiNWUzNWI2ZTNmNTdhY2ZkYTcxYjE4ZjE0NmQ5NTJiZWY2MzVlODNlZmU3YWFmZWY3YyJ9fX0=",
+      "HighTexture": "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjI5YmFlZWVkN2RmMzgzMjBkMTU5NTc2YzZkZTBjMGQxMTVmZTE2YWEwMDlmMjg5ZTY1ZTdhZTgyMzFlNzhmNyJ9fX0="
+    }
+  }
+}
