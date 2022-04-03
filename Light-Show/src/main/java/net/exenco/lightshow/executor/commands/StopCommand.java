@@ -39,10 +39,7 @@ public class StopCommand extends ShowCommand {
     @Override
     public boolean execute(CommandSender commandSender, Command command, String label, String[] args) {
         ShowSettings.ArtNet stopMessages = showSettings.artNet();
-        if(stageManager.stop())
-            commandSender.sendMessage(stopMessages.stopping());
-        else
-            commandSender.sendMessage(stopMessages.alreadyStopped());
+        commandSender.sendMessage(stageManager.stop() ? stopMessages.stopping() : stopMessages.cannotStop());
         return true;
     }
 

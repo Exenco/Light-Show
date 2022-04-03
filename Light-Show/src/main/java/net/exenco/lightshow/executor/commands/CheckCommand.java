@@ -45,10 +45,7 @@ public class CheckCommand extends ShowCommand {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if(stageManager.confirmReceiving())
-                    commandSender.sendMessage(artNet.connected());
-                else
-                    commandSender.sendMessage(artNet.notConnected());
+                commandSender.sendMessage(stageManager.confirmReceiving() ? artNet.connected() : artNet.notConnected());
             }
         }.runTaskAsynchronously(lightShow);
         return true;

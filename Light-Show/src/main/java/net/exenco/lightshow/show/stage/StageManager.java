@@ -4,23 +4,32 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.exenco.lightshow.LightShow;
-import net.exenco.lightshow.show.artnet.ArtNetClient;
+import net.exenco.lightshow.show.artnet.ArtNetPacket;
+import net.exenco.lightshow.show.artnet.DmxBuffer;
+import net.exenco.lightshow.show.receiver.NodeReceiver;
+import net.exenco.lightshow.show.receiver.PluginMessageReceiver;
+import net.exenco.lightshow.show.receiver.ReceiverMethod;
+import net.exenco.lightshow.show.receiver.ServerReceiver;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.fixtures.*;
 import net.exenco.lightshow.util.*;
 import net.exenco.lightshow.util.ConfigHandler;
 
 import java.lang.reflect.InvocationTargetException;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.*;
 
 public class StageManager {
 
+    /* Fixture types */
     private final HashMap<String, Class<? extends ShowFixture>> fixtureMap = new HashMap<>();
 
+    /* channel mapping */
     private final TreeMap<Integer, HashMap<Integer, ArrayList<ShowFixture>>> dmxMap = new TreeMap<>();
-    private final ArtNetClient artNetClient;
+
+    /* Art-Net */
+    private final DmxBuffer dmxBuffer;
+    private boolean receiving;
+    private ReceiverMethod receiverMethod;
 
     private final LightShow lightShow;
     private final ConfigHandler configHandler;
@@ -34,10 +43,20 @@ public class StageManager {
         this.songManager = songManager;
         this.packetHandler = packetHandler;
 
-        this.artNetClient = new ArtNetClient(this);
+        this.dmxBuffer = new DmxBuffer();
     }
 
     public void load() {
+        switch (showSettings.artNet().mode().toLowerCase()) {
+            case "pluginmessage" -> this.receiverMethod = new PluginMessageReceiver(this, showSettings);
+            case "receivernode" -> this.receiverMethod = new NodeReceiver(this, showSettings);
+            case "serverreceiver" -> this.receiverMethod = new ServerReceiver(this, showSettings);
+            default -> {
+                lightShow.getLogger().severe("Mode is not set to a valid value!");
+                return;
+            }
+        }
+
         dmxMap.clear();
         for(ShowSettings.DmxEntry dmxEntry : showSettings.dmxEntryList()) {
             int universeId = dmxEntry.universe();
@@ -77,42 +96,48 @@ public class StageManager {
         }
     }
 
+    public void receiveArtNet(byte[] message) {
+        ArtNetPacket packet = ArtNetPacket.valueOf(message);
+        if(packet == null)
+            return;
+        this.receiving = true;
+        dmxBuffer.setDmxData(packet.getUniverseID(), packet.getDmx());
+    }
+
     public void registerFixture(String key, Class<? extends ShowFixture> clazz) {
         fixtureMap.put(key, clazz);
     }
 
-    public boolean start() throws SocketException, UnknownHostException {
-        String address = showSettings.artNet().ip();
-        int port = showSettings.artNet().port();
-        return this.start(address, port);
-    }
-
-    public boolean start(String address, int port) throws SocketException, UnknownHostException {
-        boolean server = showSettings.artNet().server();
-        String key = showSettings.artNet().key();
-        String iv = showSettings.artNet().iv();
-
-        try {
-            return this.artNetClient.start(server, address, port, key, iv);
-        } catch (SocketException | UnknownHostException e) {
-            this.lightShow.getLogger().severe("Could not start Art-Net!");
-            e.printStackTrace();
-            throw e;
-        }
+    public boolean start() {
+        if(receiverMethod.isRunning())
+            return false;
+        return receiverMethod.start();
     }
 
     public boolean stop() {
-        return this.artNetClient.stop();
+        if(!receiverMethod.isRunning())
+            return false;
+        return receiverMethod.stop();
     }
 
     public boolean confirmReceiving() {
         int timeout = showSettings.artNet().timeout();
-        return artNetClient.confirmReceiving(timeout);
+        this.receiving = false;
+        long start = System.currentTimeMillis();
+        long current = start;
+        while(!receiving) {
+            Thread.onSpinWait();
+            if(current >= start + timeout) {
+                break;
+            }
+            current = System.currentTimeMillis();
+        }
+        return receiving;
     }
 
     public void updateFixtures() {
         dmxMap.entrySet().parallelStream().forEach(entry ->  {
-            byte[] data = artNetClient.readDmx(entry.getKey());
+            byte[] data = dmxBuffer.getDmxData(entry.getKey());
             entry.getValue().entrySet().parallelStream().forEach(subEntry -> {
                 int id = subEntry.getKey();
                 subEntry.getValue().parallelStream().forEach(fixture -> {

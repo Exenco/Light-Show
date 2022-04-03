@@ -6,6 +6,7 @@ import net.exenco.lightshow.util.ConfigHandler;
 import net.exenco.lightshow.util.PacketHandler;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.Lightable;
 
 public class BlockUpdaterFixture extends ShowFixture {
@@ -50,6 +51,8 @@ public class BlockUpdaterFixture extends ShowFixture {
             if(lit && updateBlockData instanceof Lightable lightable)
                 lightable.setLit(false);
         }
+        if(updateBlockData instanceof Levelled levelled)
+            levelled.setLevel(data[0] / 16);
         packetHandler.sendBlockChange(location, updateBlockData);
     }
 }

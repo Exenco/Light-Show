@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'net.exenco.messagerelay'
+version '1.0.0'
+
+repositories {
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.md-5:bungeecord-api:1.18-R0.1-SNAPSHOT'
+}
+
+test {
+    useJUnitPlatform()
+}

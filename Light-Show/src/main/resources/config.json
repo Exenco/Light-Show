@@ -19,17 +19,25 @@
     "ToggleOff": "§7You will §cno longer §7see the light-show"
   },
   "ArtNet": {
-    "Server": false,
-    "Key": "ABCDEFGH",
-    "Iv": "HGFEDCBA",
-    "Ip": "127.0.0.1",
-    "Port": 6454,
-    "InvalidIp": "§cEntered ip is invalid: {0}",
+    "Mode": "PluginMessage",
+    "PluginMessage": {
+      "BungeeCord": false,
+      "SenderUuid": "EnterUUID"
+    },
+    "ReceiverNode": {
+      "Ip": "192.168.1.2",
+      "Port": 6454
+    },
+    "ServerReceiver": {
+      "Port": 6454,
+      "Key": "ABCDEFGH",
+      "Iv": "HGFEDCBA"
+    },
     "Timeout": 500,
     "Starting": "§7Starting Art-Net...",
-    "AlreadyStarted": "§cArt-Net has already been started!",
+    "CannotStart": "§cCannot start Art-Net!",
     "Stopping": "§7Stopping Art-Net...",
-    "AlreadyStopped": "§cArt-Net is not running!",
+    "CannotStop": "§cCannot stop Art-Net!",
     "Connected": "§7Art-Net §aconnected§7!",
     "NotConnected": "§7Art-Net §cnot connected§7!"
   },

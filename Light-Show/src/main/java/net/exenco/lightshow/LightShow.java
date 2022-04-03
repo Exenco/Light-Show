@@ -2,6 +2,7 @@ package net.exenco.lightshow;
 
 import net.exenco.lightshow.executor.ShowExecutor;
 import net.exenco.lightshow.listener.PlayerMoveListener;
+import net.exenco.lightshow.show.receiver.PluginMessageReceiver;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.StageManager;
 import net.exenco.lightshow.show.stage.fixtures.*;
@@ -45,6 +46,7 @@ public class LightShow extends JavaPlugin {
         this.stageManager = new StageManager(this, configHandler, showSettings, songManager, packetHandler);
 
         /* Register Fixtures */
+        this.stageManager.registerFixture("Command", CommandFixture.class);
         this.stageManager.registerFixture("Beacon", BeaconFixture.class);
         this.stageManager.registerFixture("BlockChanger", BlockChangerFixture.class);
         this.stageManager.registerFixture("BlockUpdater", BlockUpdaterFixture.class);
@@ -66,6 +68,7 @@ public class LightShow extends JavaPlugin {
         ShowExecutor showExecutor = new ShowExecutor(this, showSettings, stageManager, songManager, proximitySensor);
         pluginCommand.setExecutor(showExecutor);
         pluginCommand.setTabCompleter(showExecutor);
+
     }
 
     /**

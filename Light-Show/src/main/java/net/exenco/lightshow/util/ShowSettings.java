@@ -87,22 +87,42 @@ public class ShowSettings {
         }
     }
 
-    public record ArtNet(boolean server, String key, String iv, String ip, int port, String invalidIp, int timeout, String starting, String alreadyStarted, String stopping, String alreadyStopped, String connected, String notConnected) {
+    public record ArtNet(String mode, PluginMessage pluginMessage, ReceiverNode receiverNode, ServerReceiver serverReceiver, int timeout, String starting, String cannotStart, String stopping, String cannotStop, String connected, String notConnected) {
         public static ArtNet valueOf(JsonObject jsonObject) {
-            boolean server = jsonObject.get("Server").getAsBoolean();
-            String key = jsonObject.get("Key").getAsString();
-            String iv = jsonObject.get("Iv").getAsString();
-            String ip = jsonObject.get("Ip").getAsString();
-            int port = jsonObject.get("Port").getAsInt();
-            String invalidIp = jsonObject.get("InvalidIp").getAsString();
+            String mode = jsonObject.get("Mode").getAsString();
+            PluginMessage pluginMessage = PluginMessage.valueOf(jsonObject.getAsJsonObject("PluginMessage"));
+            ReceiverNode receiverNode = ReceiverNode.valueOf(jsonObject.getAsJsonObject("ReceiverNode"));
+            ServerReceiver serverReceiver = ServerReceiver.valueOf(jsonObject.getAsJsonObject("ServerReceiver"));
             int timeout = jsonObject.get("Timeout").getAsInt();
             String starting = jsonObject.get("Starting").getAsString();
-            String alreadyStarted = jsonObject.get("AlreadyStarted").getAsString();
+            String cannotStart = jsonObject.get("CannotStart").getAsString();
             String stopping = jsonObject.get("Stopping").getAsString();
-            String alreadyStopped = jsonObject.get("AlreadyStopped").getAsString();
+            String cannotStop = jsonObject.get("CannotStop").getAsString();
             String connected = jsonObject.get("Connected").getAsString();
             String notConnected = jsonObject.get("NotConnected").getAsString();
-            return new ArtNet(server, key, iv, ip, port, invalidIp, timeout, starting, alreadyStarted, stopping, alreadyStopped, connected, notConnected);
+            return new ArtNet(mode, pluginMessage, receiverNode, serverReceiver, timeout, starting, cannotStart, stopping, cannotStop, connected, notConnected);
+        }
+        public record PluginMessage(boolean bungeeCord, String senderUuid) {
+            public static PluginMessage valueOf(JsonObject jsonObject) {
+                boolean bungeeCord = jsonObject.get("BungeeCord").getAsBoolean();
+                String senderUuid = jsonObject.get("SenderUuid").getAsString();
+                return new PluginMessage(bungeeCord, senderUuid);
+            }
+        }
+        public record ReceiverNode(String ip, int port) {
+            public static ReceiverNode valueOf(JsonObject jsonObject) {
+                String ip = jsonObject.get("Ip").getAsString();
+                int port = jsonObject.get("Port").getAsInt();
+                return new ReceiverNode(ip, port);
+            }
+        }
+        public record ServerReceiver(int port, String key, String iv) {
+            public static ServerReceiver valueOf(JsonObject jsonObject) {
+                int port = jsonObject.get("Port").getAsInt();
+                String key = jsonObject.get("Key").getAsString();
+                String iv = jsonObject.get("Iv").getAsString();
+                return new ServerReceiver(port, key, iv);
+            }
         }
     }
 

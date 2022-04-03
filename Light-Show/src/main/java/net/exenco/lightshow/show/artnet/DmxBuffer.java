@@ -5,10 +5,10 @@ import java.util.HashMap;
 /**
  * Class to buffer all input. Necessary for flawless communication between two runnables.
  */
-class ArtNetBuffer {
+public class DmxBuffer {
     private final HashMap<Integer, byte[]> data;
 
-    public ArtNetBuffer() {
+    public DmxBuffer() {
         this.data = new HashMap<>();
     }
 
