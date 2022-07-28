@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.Lightable;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 
 public class BlockChangerFixture extends ShowFixture {
     private final boolean lit;
@@ -58,6 +58,7 @@ public class BlockChangerFixture extends ShowFixture {
         Bukkit.getScheduler().runTask(stageManager.getLightShow(), () -> {
             CraftWorld world = packetHandler.getLevel().getWorld();
             world.setBlockData(location.toLocation(world), updateBlockData);
+            world.getBlockAt(location.toLocation(world)).getState().update(true, true);
         });
     }
 }

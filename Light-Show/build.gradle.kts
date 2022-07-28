@@ -2,16 +2,16 @@ import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 
 plugins {
     `java-library`
-    id("io.papermc.paperweight.userdev") version "1.3.4"
-    id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
+    id("io.papermc.paperweight.userdev") version "1.3.8"
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.2"
 }
 
 group = "net.exenco.lightshow"
-version = "1.1.3"
+version = "1.2.0"
 description = "Display a Light-Show in Minecraft."
 
 dependencies {
-    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
+    paperDevBundle("1.19-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -34,7 +34,7 @@ tasks {
 
 bukkit {
     main = "net.exenco.lightshow.LightShow"
-    apiVersion = "1.18"
+    apiVersion = "1.19"
     author = "Exenco"
     commands {
         register("show") {

@@ -7,7 +7,7 @@ import net.minecraft.nbt.TagParser;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.util.Vector;
 
 import java.io.File;
