@@ -7,11 +7,11 @@ plugins {
 }
 
 group = "net.exenco.lightshow"
-version = "1.2.0"
+version = "1.2.1"
 description = "Display a Light-Show in Minecraft."
 
 dependencies {
-    paperDevBundle("1.19-R0.1-SNAPSHOT")
+    paperDevBundle("1.19.2-R0.1-SNAPSHOT")
 }
 
 tasks {
