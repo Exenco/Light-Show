@@ -22,8 +22,4 @@ public class DmxBuffer {
 
         return data.get(universeId);
     }
-
-    public void clear() {
-        data.clear();
-    }
 }

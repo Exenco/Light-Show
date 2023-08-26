@@ -39,13 +39,14 @@ public class ShowExecutor implements CommandExecutor, TabCompleter {
     public boolean onCommand(@Nonnull CommandSender commandSender, @Nonnull Command command, @Nonnull String label, @Nonnull String[] args) {
         if(args.length > 0) {
             for(ShowCommand showCommand : commandList) {
-                if(showCommand.getName().equalsIgnoreCase(args[0])) {
-                    if(commandSender.hasPermission(showCommand.getPermission())) {
-                        return showCommand.execute(commandSender, command, label, args);
-                    } else {
-                        commandSender.sendMessage(this.showSettings.commands().noPermission());
-                        return true;
-                    }
+                if(!showCommand.getName().equalsIgnoreCase(args[0])) {
+                    continue;
+                }
+                if(commandSender.hasPermission(showCommand.getPermission())) {
+                    return showCommand.execute(commandSender, command, label, args);
+                } else {
+                    commandSender.sendMessage(this.showSettings.commands().noPermission());
+                    return true;
                 }
             }
         }
@@ -64,11 +65,13 @@ public class ShowExecutor implements CommandExecutor, TabCompleter {
         if(args.length > 1) {
             String next = args[0];
             for(ShowCommand showCommand : commandList) {
-                if(!commandSender.hasPermission(showCommand.getPermission()))
+                if (!commandSender.hasPermission(showCommand.getPermission())) {
                     continue;
+                }
                 String name = showCommand.getName();
-                if(name.equalsIgnoreCase(next) || (name.startsWith("%") && name.endsWith("%")))
+                if (name.equalsIgnoreCase(next) || (name.startsWith("%") && name.endsWith("%"))) {
                     return showCommand.tabComplete(commandSender, command, label, args);
+                }
             }
         } else if(args.length == 1) {
             ArrayList<String> completionList = new ArrayList<>();

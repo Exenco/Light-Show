@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ToggleCommand extends ShowCommand {
@@ -34,7 +35,7 @@ public class ToggleCommand extends ShowCommand {
 
     @Override
     public List<ShowCommand> getNext() {
-        return new ArrayList<>();
+        return null;
     }
 
     @Override

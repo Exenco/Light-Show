@@ -30,7 +30,7 @@ public class WarningCommand extends ShowCommand {
 
     @Override
     public List<ShowCommand> getNext() {
-        return new ArrayList<>();
+        return null;
     }
 
     @Override

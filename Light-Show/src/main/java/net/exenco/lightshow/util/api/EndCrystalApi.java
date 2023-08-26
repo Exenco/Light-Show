@@ -22,7 +22,7 @@ public class EndCrystalApi {
         if(this.destination != null && this.destination.equals(destination))
             return;
         this.destination = destination;
-        this.entityCrystal.setBeamTarget(new BlockPos(destination.getX(), destination.getY(), destination.getZ()));
+        this.entityCrystal.setBeamTarget(new BlockPos(destination.getBlockX(), destination.getBlockY(), destination.getBlockZ()));
         packetHandler.updateEntity(entityCrystal);
     }
 
@@ -37,7 +37,7 @@ public class EndCrystalApi {
         this.entityCrystal = new EndCrystal(EntityType.END_CRYSTAL, packetHandler.getLevel());
         this.entityCrystal.setPos(start.getX(), start.getY(), start.getZ());
         this.entityCrystal.setShowBottom(false);
-        this.entityCrystal.setBeamTarget(new BlockPos(destination.getX(), destination.getY(), destination.getZ()));
+        this.entityCrystal.setBeamTarget(new BlockPos(destination.getBlockX(), destination.getBlockY(), destination.getBlockZ()));
 
         packetHandler.spawnEntity(entityCrystal);
     }

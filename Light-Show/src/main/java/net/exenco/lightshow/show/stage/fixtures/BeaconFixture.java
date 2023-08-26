@@ -13,7 +13,6 @@ import java.util.*;
 public class BeaconFixture extends ShowFixture {
 
     private final PacketHandler packetHandler;
-
     private boolean enabled;
     private int red;
     private int green;

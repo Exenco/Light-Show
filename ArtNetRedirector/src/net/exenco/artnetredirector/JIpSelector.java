@@ -14,14 +14,14 @@ class JIpSelector extends JComponent {
         label.setBounds(x, y, 190, 25);
         this.ipField = new JTextField();
         this.ipField.setFont(font);
-        this.ipField.setBounds(x, y + 25, 127, 25);
+        this.ipField.setBounds(x, y + 23, 127, 25);
         JLabel colonLabel = new JLabel(":");
         colonLabel.setFont(font);
-        colonLabel.setBounds(x + 124, y + 25, 10, 25);
+        colonLabel.setBounds(x + 124, y + 22, 10, 25);
         this.portField = new JTextField();
         this.portField.setFont(font);
         this.portField.setText(defaultPort + "");
-        this.portField.setBounds(x + 130, y + 25, 47, 25);
+        this.portField.setBounds(x + 130, y + 23, 47, 25);
 
         this.add(label);
         this.add(ipField);
@@ -30,10 +30,10 @@ class JIpSelector extends JComponent {
     }
 
     int getPort() {
-        return Integer.parseInt(portField.getText());
+        return portField.getText().isEmpty() ? 6454 : Integer.parseInt(portField.getText());
     }
 
     String getIp() {
-        return ipField.getText();
+        return ipField.getText().isEmpty() ? "127.0.0.1" : ipField.getText();
     }
 }

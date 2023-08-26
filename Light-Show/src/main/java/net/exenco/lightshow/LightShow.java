@@ -2,7 +2,6 @@ package net.exenco.lightshow;
 
 import net.exenco.lightshow.executor.ShowExecutor;
 import net.exenco.lightshow.listener.PlayerMoveListener;
-import net.exenco.lightshow.show.receiver.PluginMessageReceiver;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.StageManager;
 import net.exenco.lightshow.show.stage.fixtures.*;
@@ -16,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 /**
- * Main Class of the Light-Show Plugin for Spigot 1.18.1.
+ * Main Class of the Light-Show Plugin for Spigot 1.19.4
  */
 public class LightShow extends JavaPlugin {
     private ConfigHandler configHandler;
@@ -34,7 +33,7 @@ public class LightShow extends JavaPlugin {
     public void onEnable() {
         /* Initialise Attributes */
 
-        /* World uninterested */
+        /* World unspecific */
         this.configHandler = new ConfigHandler(this);
         this.showSettings = new ShowSettings(configHandler);
 
@@ -77,10 +76,12 @@ public class LightShow extends JavaPlugin {
      */
     @Override
     public void onDisable() {
-        if(this.stageManager != null)
+        if(this.stageManager != null) {
             this.stageManager.stop();
-        if(this.packetHandler != null)
+        }
+        if(this.packetHandler != null) {
             this.packetHandler.resetEverything();
+        }
     }
 
     /**
@@ -101,9 +102,5 @@ public class LightShow extends JavaPlugin {
         this.stageManager.load();
 
         this.getLogger().info("Successfully reloaded!");
-    }
-
-    public void registerFixture(String key, Class<? extends ShowFixture> clazz) {
-        this.stageManager.registerFixture(key, clazz);
     }
 }

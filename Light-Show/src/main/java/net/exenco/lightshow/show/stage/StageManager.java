@@ -6,14 +6,12 @@ import com.google.gson.JsonObject;
 import net.exenco.lightshow.LightShow;
 import net.exenco.lightshow.show.artnet.ArtNetPacket;
 import net.exenco.lightshow.show.artnet.DmxBuffer;
-import net.exenco.lightshow.show.receiver.NodeReceiver;
-import net.exenco.lightshow.show.receiver.PluginMessageReceiver;
-import net.exenco.lightshow.show.receiver.ReceiverMethod;
-import net.exenco.lightshow.show.receiver.ServerReceiver;
+import net.exenco.lightshow.show.artnet.ArtNetReceiver;
 import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.fixtures.*;
 import net.exenco.lightshow.util.*;
 import net.exenco.lightshow.util.ConfigHandler;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -29,7 +27,9 @@ public class StageManager {
     /* Art-Net */
     private final DmxBuffer dmxBuffer;
     private boolean receiving;
-    private ReceiverMethod receiverMethod;
+    private ArtNetReceiver artNetReceiver;
+
+    private final ApplyDMXRunnable applyDMXRunnable;
 
     private final LightShow lightShow;
     private final ConfigHandler configHandler;
@@ -43,43 +43,41 @@ public class StageManager {
         this.songManager = songManager;
         this.packetHandler = packetHandler;
 
+        this.applyDMXRunnable = new ApplyDMXRunnable();
+
         this.dmxBuffer = new DmxBuffer();
     }
 
     public void load() {
-        switch (showSettings.artNet().mode().toLowerCase()) {
-            case "pluginmessage" -> this.receiverMethod = new PluginMessageReceiver(this, showSettings);
-            case "receivernode" -> this.receiverMethod = new NodeReceiver(this, showSettings);
-            case "serverreceiver" -> this.receiverMethod = new ServerReceiver(this, showSettings);
-            default -> {
-                lightShow.getLogger().severe("Mode is not set to a valid value!");
-                return;
-            }
-        }
+        this.artNetReceiver = new ArtNetReceiver(this, showSettings);
 
         dmxMap.clear();
-        for(ShowSettings.DmxEntry dmxEntry : showSettings.dmxEntryList()) {
+        for (ShowSettings.DmxEntry dmxEntry : showSettings.dmxEntryList()) {
             int universeId = dmxEntry.universe();
             JsonArray jsonArray = configHandler.getDmxEntriesJson(dmxEntry.filename());
 
-            for(JsonElement jsonElement : jsonArray) {
+            for (JsonElement jsonElement : jsonArray) {
                 JsonObject configJson = jsonElement.getAsJsonObject();
 
                 int id = configJson.get("DmxId").getAsInt() - 1 + dmxEntry.offset();
                 int universe = universeId - 1;
 
-                if(id < 0 || universeId < 0)
+                if (id < 0 || universeId < 0) {
                     throw new IllegalArgumentException("There is no such Dmx-Channel: " + universeId + "-" + id);
+                }
 
-                if(!dmxMap.containsKey(universe))
+                if (!dmxMap.containsKey(universe)) {
                     dmxMap.put(universe, new HashMap<>());
+                }
 
                 HashMap<Integer, ArrayList<ShowFixture>> subMap = dmxMap.get(universe);
                 String type = configJson.get("DmxType").getAsString();
 
-                if(!fixtureMap.containsKey(type))
+                if (!fixtureMap.containsKey(type)) {
                     lightShow.getLogger().warning("Given Dmx-Type " + type + " is not a valid type.");
+                }
 
+                // Using reflections to dynamically create fixture object
                 try {
                     Class<? extends ShowFixture> clazz = fixtureMap.get(type);
                     if(clazz == null)
@@ -98,8 +96,9 @@ public class StageManager {
 
     public void receiveArtNet(byte[] message) {
         ArtNetPacket packet = ArtNetPacket.valueOf(message);
-        if(packet == null)
+        if (packet == null) {
             return;
+        }
         this.receiving = true;
         dmxBuffer.setDmxData(packet.getUniverseID(), packet.getDmx());
     }
@@ -109,15 +108,19 @@ public class StageManager {
     }
 
     public boolean start() {
-        if(receiverMethod.isRunning())
+        if (artNetReceiver.isRunning()) {
             return false;
-        return receiverMethod.start();
+        }
+        applyDMXRunnable.runTaskTimerAsynchronously(lightShow, 0, 2);
+        return artNetReceiver.start();
     }
 
     public boolean stop() {
-        if(!receiverMethod.isRunning())
+        if (!artNetReceiver.isRunning()) {
             return false;
-        return receiverMethod.stop();
+        }
+        applyDMXRunnable.cancel();
+        return artNetReceiver.stop();
     }
 
     public boolean confirmReceiving() {
@@ -125,9 +128,9 @@ public class StageManager {
         this.receiving = false;
         long start = System.currentTimeMillis();
         long current = start;
-        while(!receiving) {
+        while (!receiving) {
             Thread.onSpinWait();
-            if(current >= start + timeout) {
+            if (current >= start + timeout) {
                 break;
             }
             current = System.currentTimeMillis();
@@ -169,5 +172,14 @@ public class StageManager {
 
     public LightShow getLightShow() {
         return lightShow;
+    }
+
+    private class ApplyDMXRunnable extends BukkitRunnable {
+        @Override
+        public void run() {
+            if (artNetReceiver.isRunning()) {
+                updateFixtures();
+            }
+        }
     }
 }

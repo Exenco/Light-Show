@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StartCommand extends ShowCommand {
@@ -41,12 +42,16 @@ public class StartCommand extends ShowCommand {
     @Override
     public boolean execute(CommandSender commandSender, Command command, String label, String[] args) {
         ShowSettings.ArtNet startMessages = showSettings.artNet();
-        commandSender.sendMessage(stageManager.start() ? startMessages.starting() : startMessages.cannotStart());
+        if (stageManager.start()) {
+            commandSender.sendMessage(startMessages.starting());
+        } else {
+            commandSender.sendMessage(startMessages.cannotStart());
+        }
         return true;
     }
 
     @Override
     public List<String> tabComplete(CommandSender commandSender, Command command, String label, String[] args) {
-        return new ArrayList<>();
+        return null;
     }
 }

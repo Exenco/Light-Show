@@ -30,13 +30,14 @@ public class ShowSettings {
      */
     public void load() {
         JsonObject configJson = configHandler.getConfigJson();
+
         this.commands = Commands.valueOf(configJson.getAsJsonObject("Commands"));
         this.showEffects = EffectSettings.valueOf(configJson.getAsJsonObject("EffectSettings"));
         this.artNet = ArtNet.valueOf(configJson.getAsJsonObject("ArtNet"));
         this.stage = Stage.valueOf(configJson.getAsJsonObject("Stage"));
 
         this.dmxEntryList = new ArrayList<>();
-        for(JsonElement jsonElement : configJson.getAsJsonArray("DmxEntries")) {
+        for (JsonElement jsonElement : configJson.getAsJsonArray("DmxEntries")) {
             dmxEntryList.add(DmxEntry.valueOf(jsonElement.getAsJsonObject()));
         }
     }
@@ -87,12 +88,10 @@ public class ShowSettings {
         }
     }
 
-    public record ArtNet(String mode, PluginMessage pluginMessage, ReceiverNode receiverNode, ServerReceiver serverReceiver, int timeout, String starting, String cannotStart, String stopping, String cannotStop, String connected, String notConnected) {
+    public record ArtNet(Redirector redirector, Address address, int timeout, String starting, String cannotStart, String stopping, String cannotStop, String connected, String notConnected) {
         public static ArtNet valueOf(JsonObject jsonObject) {
-            String mode = jsonObject.get("Mode").getAsString();
-            PluginMessage pluginMessage = PluginMessage.valueOf(jsonObject.getAsJsonObject("PluginMessage"));
-            ReceiverNode receiverNode = ReceiverNode.valueOf(jsonObject.getAsJsonObject("ReceiverNode"));
-            ServerReceiver serverReceiver = ServerReceiver.valueOf(jsonObject.getAsJsonObject("ServerReceiver"));
+            Redirector redirector = Redirector.valueOf(jsonObject.getAsJsonObject("Redirector"));
+            Address address = Address.valueOf(jsonObject.getAsJsonObject("Address"));
             int timeout = jsonObject.get("Timeout").getAsInt();
             String starting = jsonObject.get("Starting").getAsString();
             String cannotStart = jsonObject.get("CannotStart").getAsString();
@@ -100,28 +99,20 @@ public class ShowSettings {
             String cannotStop = jsonObject.get("CannotStop").getAsString();
             String connected = jsonObject.get("Connected").getAsString();
             String notConnected = jsonObject.get("NotConnected").getAsString();
-            return new ArtNet(mode, pluginMessage, receiverNode, serverReceiver, timeout, starting, cannotStart, stopping, cannotStop, connected, notConnected);
+            return new ArtNet(redirector, address, timeout, starting, cannotStart, stopping, cannotStop, connected, notConnected);
         }
-        public record PluginMessage(boolean bungeeCord, String senderUuid) {
-            public static PluginMessage valueOf(JsonObject jsonObject) {
-                boolean bungeeCord = jsonObject.get("BungeeCord").getAsBoolean();
-                String senderUuid = jsonObject.get("SenderUuid").getAsString();
-                return new PluginMessage(bungeeCord, senderUuid);
+        public record Redirector(boolean enabled, String key) {
+            public static Redirector valueOf(JsonObject jsonObject) {
+                boolean enabled = jsonObject.get("Enabled").getAsBoolean();
+                String key = jsonObject.get("Key").getAsString();
+                return new Redirector(enabled, key);
             }
         }
-        public record ReceiverNode(String ip, int port) {
-            public static ReceiverNode valueOf(JsonObject jsonObject) {
+        public record Address(String ip, int port) {
+            public static Address valueOf(JsonObject jsonObject) {
                 String ip = jsonObject.get("Ip").getAsString();
                 int port = jsonObject.get("Port").getAsInt();
-                return new ReceiverNode(ip, port);
-            }
-        }
-        public record ServerReceiver(int port, String key, String iv) {
-            public static ServerReceiver valueOf(JsonObject jsonObject) {
-                int port = jsonObject.get("Port").getAsInt();
-                String key = jsonObject.get("Key").getAsString();
-                String iv = jsonObject.get("Iv").getAsString();
-                return new ServerReceiver(port, key, iv);
+                return new Address(ip, port);
             }
         }
     }

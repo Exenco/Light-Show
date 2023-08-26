@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StopCommand extends ShowCommand {
@@ -45,6 +46,6 @@ public class StopCommand extends ShowCommand {
 
     @Override
     public List<String> tabComplete(CommandSender commandSender, Command command, String label, String[] args) {
-        return new ArrayList<>();
+        return null;
     }
 }

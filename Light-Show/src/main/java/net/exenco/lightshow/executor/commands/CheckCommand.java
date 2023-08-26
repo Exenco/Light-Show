@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Collections;
 import java.util.List;
 
 public class CheckCommand extends ShowCommand {
@@ -45,7 +46,11 @@ public class CheckCommand extends ShowCommand {
         new BukkitRunnable() {
             @Override
             public void run() {
-                commandSender.sendMessage(stageManager.confirmReceiving() ? artNet.connected() : artNet.notConnected());
+                if (stageManager.confirmReceiving()) {
+                    commandSender.sendMessage(artNet.connected());
+                } else {
+                    commandSender.sendMessage(artNet.notConnected());
+                }
             }
         }.runTaskAsynchronously(lightShow);
         return true;

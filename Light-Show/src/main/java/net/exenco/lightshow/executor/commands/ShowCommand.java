@@ -86,24 +86,29 @@ public abstract class ShowCommand {
      */
     public List<String> tabComplete(CommandSender commandSender, Command command, String label, String[] args) {
         int position = getPosition();
-        if(args.length > position + 1) {
+        if (args.length > position + 1) {
             String next = args[position - 1];
-            for(ShowCommand showCommand : getNext()) {
-                if(!commandSender.hasPermission(showCommand.getPermission()))
+            for (ShowCommand showCommand : getNext()) {
+                if (!commandSender.hasPermission(showCommand.getPermission())) {
                     continue;
+                }
                 String name = showCommand.getName();
-                if(name.equalsIgnoreCase(next) || (name.startsWith("%") && name.endsWith("%")))
+                if (name.equalsIgnoreCase(next) || (name.startsWith("%") && name.endsWith("%"))) {
                     return showCommand.tabComplete(commandSender, command, label, args);
+                }
             }
-        } else if(args.length == position + 1) {
+        } else if (args.length == position + 1) {
             ArrayList<String> completionList = new ArrayList<>();
             String arg = args[position].toLowerCase();
-            for(ShowCommand showCommand : getNext()) {
-                if(!commandSender.hasPermission(showCommand.getPermission()))
-                    continue;
-                for(String s : showCommand.getCompletions())
-                    if(s.toLowerCase().startsWith(arg))
-                        completionList.add(s);
+            if (getNext() != null) {
+                for (ShowCommand showCommand : getNext()) {
+                    if (!commandSender.hasPermission(showCommand.getPermission())) {
+                        continue;
+                    }
+                    for (String s : showCommand.getCompletions())
+                        if (s.toLowerCase().startsWith(arg))
+                            completionList.add(s);
+                }
             }
             return completionList;
         }

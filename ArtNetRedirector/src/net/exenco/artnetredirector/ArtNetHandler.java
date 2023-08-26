@@ -1,9 +1,7 @@
 package net.exenco.artnetredirector;
 
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
+import javax.crypto.*;
+import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -12,11 +10,14 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Arrays;
 import java.util.List;
 
 public class ArtNetHandler {
@@ -26,11 +27,16 @@ public class ArtNetHandler {
     private DatagramSocket writeSocket;
     private List<InetSocketAddress> writeAddressList;
     private JLabel log;
+    private JLabel count;
 
     private Cipher cipher;
+    private String key;
+    private SecretKeyFactory factory;
 
-    public int start(InetSocketAddress readAddress, List<InetSocketAddress> writeAddressList, String password, String iv, JLabel log) {
+    public int start(InetSocketAddress readAddress, List<InetSocketAddress> writeAddressList, String password, JLabel log, JLabel count) {
         this.log = log;
+        this.count = count;
+        this.key = password;
         if(readAddress == null || writeAddressList == null) {
             log.setText("Entered IP-Address wrong.");
             return -1;
@@ -55,15 +61,14 @@ public class ArtNetHandler {
             for(InetSocketAddress address : writeAddressList)
                 System.out.println(address);
 
-            this.cipher = Cipher.getInstance("AES/CFB/NoPadding");
-            SecretKey secretKey = getKeyFromPassword(password);
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, generateIv(iv));
+            this.cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            this.factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
 
-            socketReader = new Thread(new SocketReader());
+            socketReader = new SocketReader();
             socketReader.start();
 
             return 1;
-        } catch (IOException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeySpecException | InvalidKeyException | InvalidAlgorithmParameterException e){
+        } catch (IOException | NoSuchAlgorithmException | NoSuchPaddingException e){
             System.err.println("There has been an error starting Art-Net.");
             log.setText("Error: " + e.getMessage());
             e.printStackTrace();
@@ -88,7 +93,7 @@ public class ArtNetHandler {
     private class SocketReader extends Thread {
         @Override
         public void run() {
-            byte[] buffer = new byte[2048];
+            byte[] buffer = new byte[1024];
             DatagramPacket receivedPacket = new DatagramPacket(buffer, buffer.length);
             while(!isInterrupted()) {
                 try {
@@ -96,10 +101,12 @@ public class ArtNetHandler {
                     readSocket.receive(receivedPacket);
                     System.out.println("Received packet!");
 
-                    byte[] data = receivedPacket.getData();
-                    byte[] encrypted = cipher.doFinal(data);
+                    byte[] data = Arrays.copyOf(receivedPacket.getData(), receivedPacket.getLength());
+
+                    byte[] encrypted = encrypt(data);
                     receivedPacket.setData(encrypted);
 
+                    count.setText(count.getText().equals("1") ? "0" : "1");
                     for(InetSocketAddress address : writeAddressList) {
                         receivedPacket.setAddress(address.getAddress());
                         receivedPacket.setPort(address.getPort());
@@ -114,15 +121,34 @@ public class ArtNetHandler {
         }
     }
 
-    private SecretKey getKeyFromPassword(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
-        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), (password.hashCode() + "").getBytes(), 65536, 128);
-        return new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
-    }
+    private byte[] encrypt(byte[] raw) {
+        try {
+            SecureRandom secureRandom = new SecureRandom();
 
-    private IvParameterSpec generateIv(String iv) {
-        byte[] ivArr = new byte[16];
-        System.arraycopy(iv.getBytes(), 0, ivArr, 0, Math.min(16, iv.getBytes().length));
-        return new IvParameterSpec(ivArr);
+            byte[] salt = new byte[16];
+            secureRandom.nextBytes(salt);
+
+            byte[] iv = new byte[12];
+            secureRandom.nextBytes(iv);
+
+            KeySpec spec = new PBEKeySpec(key.toCharArray(), salt, 65536, 128);
+            SecretKey secretKey = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+
+            GCMParameterSpec parameterSpec = new GCMParameterSpec(128, iv);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, parameterSpec);
+
+            byte[] encrypted = cipher.doFinal(raw);
+
+            int length = iv.length + salt.length + encrypted.length;
+            ByteBuffer buffer = ByteBuffer.allocate(length);
+            buffer.put(iv);
+            buffer.put(salt);
+            buffer.put(encrypted);
+            return buffer.array();
+        } catch (InvalidAlgorithmParameterException | InvalidKeySpecException | InvalidKeyException |
+                 IllegalBlockSizeException | BadPaddingException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }

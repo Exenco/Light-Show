@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Light-Show"
+rootProject.name = "Minecraft-Light-Show"

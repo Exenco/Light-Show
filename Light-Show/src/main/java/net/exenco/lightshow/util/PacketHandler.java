@@ -5,6 +5,7 @@ import net.exenco.lightshow.LightShow;
 import net.minecraft.network.PacketListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,12 +17,14 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.SoundCategory;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -39,8 +42,9 @@ public class PacketHandler {
     }
 
     private void sendPacketToAllPlayers(Packet<? extends PacketListener> packet) {
-        for(CraftPlayer player : proximitySensor.getPlayerList())
+        for (CraftPlayer player : proximitySensor.getPlayerList()) {
             player.getHandle().connection.send(packet);
+        }
     }
 
     /**
@@ -136,7 +140,12 @@ public class PacketHandler {
     private List<Packet<? extends PacketListener>> getEntitySpawnPackets(Entity entity) {
         List<Packet<? extends PacketListener>> packetList = new ArrayList<>();
         packetList.add(new ClientboundAddEntityPacket(entity));
-        packetList.add(getEntityMetadataPacket(entity));
+
+        // If entity has metadata, send packet
+        ClientboundSetEntityDataPacket metadataPacket = getEntityMetadataPacket(entity);
+        if (metadataPacket != null) {
+            packetList.add(metadataPacket);
+        }
 
         if (entity instanceof LivingEntity livingEntity) {
             packetList.add(getEntityEquipmentPacket(livingEntity));
@@ -150,7 +159,11 @@ public class PacketHandler {
      * @return the created {@link ClientboundSetEntityDataPacket} object.
      */
     private ClientboundSetEntityDataPacket getEntityMetadataPacket(Entity entity) {
-        return new ClientboundSetEntityDataPacket(entity.getId(), entity.getEntityData(), true);
+        SynchedEntityData entityData = entity.getEntityData();
+        if (entityData.getNonDefaultValues() == null) {
+            return null;
+        }
+        return new ClientboundSetEntityDataPacket(entity.getId(), entityData.getNonDefaultValues());
     }
 
     /**
@@ -192,7 +205,17 @@ public class PacketHandler {
      * @param entity to spawn.
      */
     public void spawnEntity(Entity entity) {
-        entity.level = this.level;
+        try {
+            entity.setLevel(this.level);
+        } catch (IllegalAccessError e) {
+            try {
+                Method method = entity.getClass().getDeclaredMethod("a", this.level.getClass());
+                method.setAccessible(true);
+                method.invoke(this.level, (Object) null);
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException ignored) {
+
+            }
+        }
         entityMap.put(entity.getId(), entity);
         getEntitySpawnPackets(entity).forEach(this::sendPacketToAllPlayers);
     }
@@ -307,7 +330,7 @@ public class PacketHandler {
      * @param entityFireworks to spawn.
      */
     public void spawnFirework(FireworkRocketEntity entityFireworks) {
-        entityFireworks.level = this.level;
+        entityFireworks.setLevel(this.level);
 
         getEntitySpawnPackets(entityFireworks).forEach(this::sendPacketToAllPlayers);
 

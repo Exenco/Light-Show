@@ -15,23 +15,17 @@
     "NoPermission": "§cYou have no permission to execute this command.",
     "NotAllowed": "§cYou are not allowed to execute this command.",
     "Reload": "§aReloading successful.",
-    "ToggleOn": "§7You will §anow §7see the light-show",
-    "ToggleOff": "§7You will §cno longer §7see the light-show"
+    "ToggleOn": "§7You will §anow §7see the light-show.",
+    "ToggleOff": "§7You will §cno longer §7see the light-show."
   },
   "ArtNet": {
-    "Mode": "PluginMessage",
-    "PluginMessage": {
-      "BungeeCord": false,
-      "SenderUuid": "EnterUUID"
+    "Redirector": {
+      "Enabled": true,
+      "Key": "change me!"
     },
-    "ReceiverNode": {
+    "Address": {
       "Ip": "192.168.1.2",
       "Port": 6454
-    },
-    "ServerReceiver": {
-      "Port": 6454,
-      "Key": "ABCDEFGH",
-      "Iv": "HGFEDCBA"
     },
     "Timeout": 500,
     "Starting": "§7Starting Art-Net...",

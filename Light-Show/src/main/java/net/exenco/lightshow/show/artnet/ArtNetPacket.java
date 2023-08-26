@@ -12,7 +12,7 @@ public class ArtNetPacket {
     public ArtNetPacket(byte[] data) {
         universeID = ByteBuffer.wrap(data, 14, 8).get();
         int numChannels = ByteBuffer.wrap(data, 16, 2).getShort();
-        System.arraycopy(data, 18, dmxData, 0, numChannels);
+        System.arraycopy(data, 18, dmxData, 0, Math.min(numChannels, data.length - 18));
     }
 
     public byte[] getDmx() {
@@ -31,7 +31,7 @@ public class ArtNetPacket {
     }
 
     public static ArtNetPacket valueOf(byte[] raw) {
-        if (raw.length <= 10)
+        if (raw.length < 20)
             return null;
         int opCode = ByteBuffer.wrap(raw, 8, 16).order(ByteOrder.LITTLE_ENDIAN).getShort();
         if (opCode == 0x5000 && isValidHeader(raw))
