@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="ParticleFlare Minecraft" ShortName="ParticleFl" Company="Exenco / Redlucraft">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Generic" Name="Generic" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Count" Display="'Count %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect" Name="Effect" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Particle" Display="'Particle %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Speed" Description="" Group="S">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Time" Display="'Time %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red" Display="'Red %.f',0~255" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green" Display="'Green %.f',0~255" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue" Display="'Blue %.f',0~255" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Size" Display="'Size %.f',0~255" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="ParticleFlare Minecraft " Channels="7">
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Generic" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Effect" ChannelOffset="2" Wheel="23" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="25" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="7" Wheel="19" />
+    </Include>
+  </Mode>
+</Fixture>
