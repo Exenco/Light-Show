@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Fogmachine Minecraft" ShortName="Fogmachine" Company="Exenco / Redlucraft">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Velocity" Name="Generic" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Velocity" Display="'Velocity %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Particle" Name="Generic" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Particle" Display="'Particle %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Focus" Name="Focus" Description="" Group="B">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Count" Display="'Count %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Offset" Display="'Offset %.f',0~255" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="Fogmachine Minecraft " Channels="4">
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Velocity" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Particle" ChannelOffset="2" Wheel="29" />
+      <Attribute ID="Focus" ChannelOffset="3" Wheel="20" />
+      <Attribute ID="Zoom" ChannelOffset="4" Wheel="19" />
+    </Include>
+  </Mode>
+</Fixture>
