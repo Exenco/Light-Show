@@ -23,8 +23,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -205,17 +203,6 @@ public class PacketHandler {
      * @param entity to spawn.
      */
     public void spawnEntity(Entity entity) {
-        try {
-            entity.setLevel(this.level);
-        } catch (IllegalAccessError e) {
-            try {
-                Method method = entity.getClass().getDeclaredMethod("a", this.level.getClass());
-                method.setAccessible(true);
-                method.invoke(this.level, (Object) null);
-            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException ignored) {
-
-            }
-        }
         entityMap.put(entity.getId(), entity);
         getEntitySpawnPackets(entity).forEach(this::sendPacketToAllPlayers);
     }
@@ -330,8 +317,6 @@ public class PacketHandler {
      * @param entityFireworks to spawn.
      */
     public void spawnFirework(FireworkRocketEntity entityFireworks) {
-        entityFireworks.setLevel(this.level);
-
         getEntitySpawnPackets(entityFireworks).forEach(this::sendPacketToAllPlayers);
 
         new BukkitRunnable() {

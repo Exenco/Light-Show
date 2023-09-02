@@ -13,6 +13,7 @@ public class RedirectorFrame extends JFrame {
 
     private final JLabel logLabel;
     private final JLabel countLabel;
+    private final JCheckBox modeCheckbox;
 
     public RedirectorFrame(ArtNetHandler artNetHandler) {
         setTitle("Art-Net Redirector");
@@ -33,12 +34,12 @@ public class RedirectorFrame extends JFrame {
 
         JLabel keyLabel = new JLabel("Key");
         keyLabel.setFont(smallFont);
-        keyLabel.setBounds(10, 132, 50, 20);
+        keyLabel.setBounds(10, 127, 50, 20);
         add(keyLabel);
         JTextField keyField = new JTextField();
         keyField.setFont(smallFont);
         keyField.setText("Change me!!!");
-        keyField.setBounds(45, 132, 142, 20);
+        keyField.setBounds(45, 127, 142, 20);
         add(keyField);
 
         DefaultListModel<String> model = new DefaultListModel<>();
@@ -62,6 +63,11 @@ public class RedirectorFrame extends JFrame {
         addButton.addActionListener(e -> model.add(model.getSize(), writeSelector.getIp() + ":" + writeSelector.getPort()));
         add(addButton);
 
+        modeCheckbox = new JCheckBox("External machine");
+        modeCheckbox.setFont(font);
+        modeCheckbox.setBounds(10, 147, 176, 20);
+        add(modeCheckbox);
+
         logLabel = new JLabel("");
         logLabel.setFont(font);
         logLabel.setBounds(10, 200, 300, 30);
@@ -75,7 +81,7 @@ public class RedirectorFrame extends JFrame {
         JButton startButton = new JButton();
         startButton.setFont(font);
         startButton.setText("Start");
-        startButton.setBounds(10, 162, 176, 30);
+        startButton.setBounds(10, 170, 176, 20);
         startButton.addActionListener(e -> {
             String text = startButton.getText();
             if(text.equals("Start")) {
@@ -85,7 +91,9 @@ public class RedirectorFrame extends JFrame {
                     String[] args = address.split(":");
                     writeAddressList.add(resolveAddress(args[0], Integer.parseInt(args[1])));
                 }
-                int code = artNetHandler.start(resolveAddress(readSelector.getIp(), readSelector.getPort()), writeAddressList, keyField.getText(), logLabel, countLabel);
+
+                boolean external = modeCheckbox.isSelected();
+                int code = artNetHandler.start(resolveAddress(readSelector.getIp(), readSelector.getPort()), external, writeAddressList, keyField.getText(), logLabel, countLabel);
                 if(code != -1)
                     startButton.setText("Stop");
             } else if(text.equals("Stop")) {

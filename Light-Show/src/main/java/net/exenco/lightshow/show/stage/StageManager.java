@@ -11,7 +11,6 @@ import net.exenco.lightshow.show.song.SongManager;
 import net.exenco.lightshow.show.stage.fixtures.*;
 import net.exenco.lightshow.util.*;
 import net.exenco.lightshow.util.ConfigHandler;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -29,8 +28,6 @@ public class StageManager {
     private boolean receiving;
     private ArtNetReceiver artNetReceiver;
 
-    private final ApplyDMXRunnable applyDMXRunnable;
-
     private final LightShow lightShow;
     private final ConfigHandler configHandler;
     private final ShowSettings showSettings;
@@ -42,8 +39,6 @@ public class StageManager {
         this.showSettings = showSettings;
         this.songManager = songManager;
         this.packetHandler = packetHandler;
-
-        this.applyDMXRunnable = new ApplyDMXRunnable();
 
         this.dmxBuffer = new DmxBuffer();
     }
@@ -111,7 +106,6 @@ public class StageManager {
         if (artNetReceiver.isRunning()) {
             return false;
         }
-        applyDMXRunnable.runTaskTimerAsynchronously(lightShow, 0, 2);
         return artNetReceiver.start();
     }
 
@@ -119,7 +113,6 @@ public class StageManager {
         if (!artNetReceiver.isRunning()) {
             return false;
         }
-        applyDMXRunnable.cancel();
         return artNetReceiver.stop();
     }
 
@@ -172,14 +165,5 @@ public class StageManager {
 
     public LightShow getLightShow() {
         return lightShow;
-    }
-
-    private class ApplyDMXRunnable extends BukkitRunnable {
-        @Override
-        public void run() {
-            if (artNetReceiver.isRunning()) {
-                updateFixtures();
-            }
-        }
     }
 }

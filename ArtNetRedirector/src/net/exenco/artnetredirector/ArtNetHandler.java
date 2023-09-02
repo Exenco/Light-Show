@@ -25,6 +25,7 @@ public class ArtNetHandler {
     private Thread socketReader;
     private DatagramSocket readSocket;
     private DatagramSocket writeSocket;
+    private InetSocketAddress readAddress;
     private List<InetSocketAddress> writeAddressList;
     private JLabel log;
     private JLabel count;
@@ -33,7 +34,7 @@ public class ArtNetHandler {
     private String key;
     private SecretKeyFactory factory;
 
-    public int start(InetSocketAddress readAddress, List<InetSocketAddress> writeAddressList, String password, JLabel log, JLabel count) {
+    public int start(InetSocketAddress readAddress, boolean external, List<InetSocketAddress> writeAddressList, String password, JLabel log, JLabel count) {
         this.log = log;
         this.count = count;
         this.key = password;
@@ -48,7 +49,12 @@ public class ArtNetHandler {
             return 0;
         }
         try {
-            readSocket = new DatagramSocket(readAddress);
+            this.readAddress = readAddress;
+            if (external) {
+                readSocket = new DatagramSocket(readAddress.getPort());
+            } else {
+                readSocket = new DatagramSocket(readAddress);
+            }
             readSocket.setReuseAddress(true);
             readSocket.setBroadcast(true);
 
@@ -101,6 +107,11 @@ public class ArtNetHandler {
                     readSocket.receive(receivedPacket);
                     System.out.println("Received packet!");
 
+                    if (!receivedPacket.getAddress().getHostAddress().equals(readAddress.getHostString())) {
+                        System.out.println("Packet discarded: Invalid source!");
+                        continue;
+                    }
+
                     byte[] data = Arrays.copyOf(receivedPacket.getData(), receivedPacket.getLength());
 
                     byte[] encrypted = encrypt(data);
@@ -127,6 +138,7 @@ public class ArtNetHandler {
 
             byte[] salt = new byte[16];
             secureRandom.nextBytes(salt);
+
 
             byte[] iv = new byte[12];
             secureRandom.nextBytes(iv);

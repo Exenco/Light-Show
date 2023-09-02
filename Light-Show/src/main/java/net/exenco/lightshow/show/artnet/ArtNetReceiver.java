@@ -56,7 +56,7 @@ public class ArtNetReceiver {
 
             datagramSocket.setReuseAddress(true);
             datagramSocket.setBroadcast(true);
-            datagramSocket.setSoTimeout(1);
+            datagramSocket.setSoTimeout(100);
 
         } catch (SocketException e) {
             logger.log(Level.WARNING, "Cannot start Art-Net!");
@@ -113,6 +113,11 @@ public class ArtNetReceiver {
                     try {
                         datagramSocket.receive(receivedPacket);
 
+//                        if (!receivedPacket.getAddress().getHostAddress().equals(readAddress.getHostString())) {
+//                            System.out.println("Packet discarded: Invalid source!");
+//                            continue;
+//                        }
+
                         byte[] data = Arrays.copyOf(receivedPacket.getData(), receivedPacket.getLength());
 
                         if (settings.redirector().enabled()) {
@@ -121,8 +126,8 @@ public class ArtNetReceiver {
                                 continue;
                         }
                         stageManager.receiveArtNet(data);
-//                        stageManager.updateFixtures();
                     } catch (SocketTimeoutException ignored) {}
+                    stageManager.updateFixtures();
                 }
             } catch (IOException e) {
                 if(running)

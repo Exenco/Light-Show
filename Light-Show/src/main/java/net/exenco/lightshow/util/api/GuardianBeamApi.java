@@ -80,8 +80,8 @@ public class GuardianBeamApi {
 
     private void setGuardianTarget(Guardian entityGuardian, int entityId) {
         try {
-            Method setSpikes = entityGuardian.getClass().getDeclaredMethod("v", boolean.class);
-            Method setAttackId = entityGuardian.getClass().getDeclaredMethod("a", int.class);
+            Method setSpikes = entityGuardian.getClass().getDeclaredMethod("w", boolean.class);
+            Method setAttackId = entityGuardian.getClass().getDeclaredMethod("b", int.class);
             setSpikes.setAccessible(true);
             setAttackId.setAccessible(true);
             setSpikes.invoke(entityGuardian, false);
