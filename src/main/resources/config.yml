@@ -1,0 +1,10 @@
+stage:
+  location:
+    world: "world"
+    x: 0.0
+    y: 100.0
+    z: 6.0
+  radius: 20.0
+art-net:
+  ip: "192.168.0.10"
+  port: 6454

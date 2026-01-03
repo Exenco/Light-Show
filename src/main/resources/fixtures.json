@@ -1,0 +1,14 @@
+[
+  {
+    "type": "BeamMovingHead",
+    "dmx": "1-001",
+    "location": {
+      "x": 5.1,
+      "y": 103.0,
+      "z": 10.5,
+      "rotX": 0.0,
+      "rotY": 0.0,
+      "rotZ": 0.0
+    }
+  }
+]
